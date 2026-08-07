@@ -40,6 +40,9 @@ export function SvgMat() {
       }}
     >
       <defs>
+        <clipPath id="inner-mat-clip">
+          <rect x={0} y={0} width={widthPx} height={heightPx} />
+        </clipPath>
         {settings.background.type === 'Gradient' && (
           <linearGradient id="mat-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor={settings.background.color1} />
@@ -71,10 +74,13 @@ export function SvgMat() {
           stroke={settings.grid.color}
           strokeWidth={thickness}
         />
+        <g clipPath="url(#inner-mat-clip)">
+          <SvgGrid settings={settings} widthPx={widthPx} heightPx={heightPx} />
+          <SvgTicks settings={settings} widthPx={widthPx} heightPx={heightPx} />
+          <SvgGuides settings={settings} widthPx={widthPx} heightPx={heightPx} />
+        </g>
         
-        <SvgGrid settings={settings} widthPx={widthPx} heightPx={heightPx} />
-        <SvgTicks settings={settings} widthPx={widthPx} heightPx={heightPx} />
-        <SvgGuides settings={settings} widthPx={widthPx} heightPx={heightPx} />
+        {/* Draw numbers outside clip so they can overhang if needed, though they shouldn't with margin */}
         <SvgNumbers settings={settings} widthPx={widthPx} heightPx={heightPx} />
       </g>
     </svg>

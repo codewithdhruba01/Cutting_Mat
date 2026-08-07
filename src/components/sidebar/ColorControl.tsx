@@ -36,23 +36,28 @@ export function ColorControl() {
   };
 
   return (
-    <div className="space-y-4 pt-2">
-      <div className="space-y-2">
-        <Label className="text-xs text-muted-foreground uppercase font-mono">Preset Surface Colors</Label>
-        <div className="grid grid-cols-4 gap-2">
-          {PRESETS.map(p => (
-            <button
-              key={p.name}
-              title={p.name}
+    <div className="space-y-4">
+      <div className="grid grid-cols-3 gap-2">
+        {PRESETS.map(p => (
+          <button
+            key={p.name}
+            title={p.name}
+            className={cn(
+              "flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors",
+              surfaceColors.preset === p.name ? "font-semibold text-foreground" : ""
+            )}
+            onClick={() => handlePresetSelect(p)}
+          >
+            <span 
               className={cn(
-                "w-full h-8 rounded-md border shadow-sm transition-all hover:scale-105",
-                surfaceColors.preset === p.name ? "ring-2 ring-ring ring-offset-2 ring-offset-background" : ""
+                "w-3 h-3 rounded-full border border-border shadow-sm",
+                surfaceColors.preset === p.name ? "ring-2 ring-ring ring-offset-1 ring-offset-background" : ""
               )}
               style={{ backgroundColor: p.value }}
-              onClick={() => handlePresetSelect(p)}
             />
-          ))}
-        </div>
+            {p.name}
+          </button>
+        ))}
       </div>
       
       <div className="space-y-2">

@@ -111,17 +111,17 @@ export interface AppSettings {
 }
 
 export const defaultSettings: AppSettings = {
-  matSize: { unit: 'inch', width: 12, height: 12 },
+  matSize: { unit: 'cm', width: 50, height: 35 },
   surfaceColors: { preset: 'Classic Green', custom: '#0b5c4d' },
-  grid: { enabled: true, majorSize: 1, minorSize: 0.125, opacity: 0.8, color: '#b8d04d', majorThickness: 1.5, minorThickness: 0.5 },
+  grid: { enabled: true, majorSize: 5, minorSize: 1, opacity: 0.8, color: '#b8d04d', majorThickness: 1.5, minorThickness: 0.5 },
   edgeTicks: { enabled: true, length: 5, width: 1, interval: 1, position: 'Inside' },
-  numericGuides: { enabled: true, top: true, bottom: true, left: true, right: true, fontSize: 12, fontFamily: 'var(--font-geist-mono)', fontWeight: '400', fontColor: '#f5f5f5' },
-  radiusGuides: { enabled: false, radii: [2, 4, 6], labels: true },
-  angleGuides: { enabled: false, interval: 15, labels: true, dashed: true },
+  numericGuides: { enabled: true, top: true, bottom: true, left: true, right: true, fontSize: 12, fontFamily: 'var(--font-geist-mono)', fontWeight: '400', fontColor: '#b8d04d' },
+  radiusGuides: { enabled: true, radii: [10, 20, 30], labels: true },
+  angleGuides: { enabled: true, interval: 15, labels: true, dashed: true },
   tickMarks: { enabled: false, length: 10, thickness: 1, opacity: 0.5 },
-  diagonalGuides: { enabled: false, show45: true, show60: false },
-  crosshair: { enabled: true, opacity: 0.3 },
-  border: { thickness: 2, roundedCorners: 8, padding: 20, innerMargin: 10, outerMargin: 10 },
+  diagonalGuides: { enabled: false, show45: false, show60: false },
+  crosshair: { enabled: false, opacity: 0.3 },
+  border: { thickness: 2, roundedCorners: 12, padding: 20, innerMargin: 10, outerMargin: 10 },
   advanced: { snap: false, lockAspectRatio: false, livePreview: true, showCoordinates: true, showOrigin: true },
   background: { type: 'Solid', color1: '#0b5c4d', color2: '#1a1a1a' },
 };

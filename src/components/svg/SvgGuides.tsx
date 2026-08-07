@@ -9,9 +9,10 @@ interface Props {
 }
 
 export function SvgGuides({ settings, widthPx, heightPx }: Props) {
-  const cx = widthPx / 2;
-  const cy = heightPx / 2;
-  const maxRadius = Math.max(cx, cy);
+  // Origin for angles and radius (bottom left)
+  const cx = 0;
+  const cy = heightPx;
+  const maxRadius = Math.sqrt(widthPx * widthPx + heightPx * heightPx);
 
   const { radiusGuides, angleGuides, diagonalGuides, crosshair, grid } = settings;
 
@@ -52,20 +53,20 @@ export function SvgGuides({ settings, widthPx, heightPx }: Props) {
   // Angle Guides
   if (angleGuides.enabled) {
     const interval = angleGuides.interval || 15;
-    for (let angle = 0; angle < 180; angle += interval) {
-      if (angle === 0 || angle === 90) continue; // Skip straight crosshair axes if we just want pure angles, or draw them. Actually, crosshairs are separate, but 0/90 are diagonals? No, 0/90 are crosshairs.
+    for (let angle = 0; angle <= 90; angle += interval) {
+      if (angle === 0 || angle === 90) continue; // Skip straight axes
       
       const rad = (angle * Math.PI) / 180;
-      const dx = maxRadius * 2 * Math.cos(rad);
-      const dy = maxRadius * 2 * Math.sin(rad);
+      const dx = maxRadius * Math.cos(rad);
+      const dy = maxRadius * Math.sin(rad);
 
       elements.push(
         <line
           key={`ang-${angle}`}
-          x1={cx - dx}
-          y1={cy - dy}
+          x1={cx}
+          y1={cy}
           x2={cx + dx}
-          y2={cy + dy}
+          y2={cy - dy}
           stroke={grid.color}
           strokeWidth={grid.minorThickness}
           strokeDasharray={angleGuides.dashed ? "5,5" : "none"}
@@ -76,8 +77,8 @@ export function SvgGuides({ settings, widthPx, heightPx }: Props) {
         elements.push(
           <text
             key={`ang-lbl-${angle}-1`}
-            x={cx + maxRadius * 0.9 * Math.cos(rad)}
-            y={cy + maxRadius * 0.9 * Math.sin(rad)}
+            x={cx + maxRadius * 0.8 * Math.cos(rad)}
+            y={cy - maxRadius * 0.8 * Math.sin(rad)}
             fill={settings.numericGuides.fontColor}
             fontSize={10}
             textAnchor="middle"

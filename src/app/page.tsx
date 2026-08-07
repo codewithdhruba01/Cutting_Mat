@@ -7,7 +7,7 @@ import { PreviewArea } from "@/components/preview/PreviewArea";
 export default function Home() {
   return (
     <SettingsProvider>
-      <main className="flex h-screen w-screen overflow-hidden bg-background">
+      <main className="flex h-screen w-screen fixed inset-0 overflow-hidden bg-background">
         <Sidebar />
         <PreviewArea />
       </main>

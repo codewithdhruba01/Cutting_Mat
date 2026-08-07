@@ -25,23 +25,25 @@ export function SvgNumbers({ settings, widthPx, heightPx }: Props) {
     if (x === 0 || Math.abs(x - widthPx) < 0.1) continue; 
     
     if (top) {
-      labels.push({ x, y: margin, text: `${Math.round(val * 100) / 100}`, anchor: "middle", baseline: "hanging" });
+      labels.push({ x, y: -margin, text: `${Math.round(val * 100) / 100}`, anchor: "middle", baseline: "middle" });
     }
     if (bottom) {
-      labels.push({ x, y: heightPx - margin, text: `${Math.round(val * 100) / 100}`, anchor: "middle", baseline: "auto" });
+      labels.push({ x, y: heightPx + margin, text: `${Math.round(val * 100) / 100}`, anchor: "middle", baseline: "middle" });
     }
   }
 
   // Vertical labels (Left and Right)
   for (let y = 0; y <= heightPx; y += majorPx) {
-    const val = pixelsToUnit(y, unit);
-    if (y === 0 || Math.abs(y - heightPx) < 0.1) continue;
+    // Invert Y value calculation so 0 is at the bottom
+    const yFromBottom = heightPx - y;
+    const val = pixelsToUnit(yFromBottom, unit);
+    if (yFromBottom === 0 || Math.abs(yFromBottom - heightPx) < 0.1) continue;
 
     if (left) {
-      labels.push({ x: margin, y, text: `${Math.round(val * 100) / 100}`, anchor: "start", baseline: "middle" });
+      labels.push({ x: -margin, y, text: `${Math.round(val * 100) / 100}`, anchor: "middle", baseline: "middle" });
     }
     if (right) {
-      labels.push({ x: widthPx - margin, y, text: `${Math.round(val * 100) / 100}`, anchor: "end", baseline: "middle" });
+      labels.push({ x: widthPx + margin, y, text: `${Math.round(val * 100) / 100}`, anchor: "middle", baseline: "middle" });
     }
   }
 
