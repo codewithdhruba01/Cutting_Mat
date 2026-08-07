@@ -18,7 +18,7 @@ function Card({ title, children, description }: { title: string, children: React
 
 export function Sidebar() {
   return (
-    <div className="w-[340px] flex-shrink-0 h-full bg-background border-r flex flex-col z-20">
+    <div className="w-[380px] flex-shrink-0 h-full bg-background border-r flex flex-col z-20">
       <div className="flex-1 overflow-y-auto p-6">
         
         <div className="mb-8">
