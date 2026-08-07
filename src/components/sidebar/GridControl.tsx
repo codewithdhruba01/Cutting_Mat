@@ -61,7 +61,7 @@ export function GridControl() {
             </div>
             <Slider 
               value={[grid.opacity]} 
-              onValueChange={(val: any) => handleChange('opacity', Array.isArray(val) ? val[0] : val)} 
+              onValueChange={(val: readonly number[] | number) => handleChange('opacity', Array.isArray(val) ? val[0] : val)} 
               min={0} 
               max={1} 
               step={0.01}
@@ -75,7 +75,7 @@ export function GridControl() {
             </div>
             <Slider 
               value={[grid.majorThickness]} 
-              onValueChange={(val: any) => handleChange('majorThickness', Array.isArray(val) ? val[0] : val)} 
+              onValueChange={(val: readonly number[] | number) => handleChange('majorThickness', Array.isArray(val) ? val[0] : val)} 
               min={0.1} 
               max={10} 
               step={0.1}
@@ -89,7 +89,7 @@ export function GridControl() {
             </div>
             <Slider 
               value={[grid.minorThickness]} 
-              onValueChange={(val: any) => handleChange('minorThickness', Array.isArray(val) ? val[0] : val)} 
+              onValueChange={(val: readonly number[] | number) => handleChange('minorThickness', Array.isArray(val) ? val[0] : val)} 
               min={0.1} 
               max={10} 
               step={0.1}

@@ -22,6 +22,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     try {
       const stored = localStorage.getItem("cutting-mat-settings");
       if (stored) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setSettings({ ...defaultSettings, ...JSON.parse(stored) });
       }
     } catch (e) {

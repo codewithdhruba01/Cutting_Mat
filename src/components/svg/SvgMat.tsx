@@ -13,7 +13,7 @@ export function SvgMat() {
   const widthPx = unitToPixels(width, unit);
   const heightPx = unitToPixels(height, unit);
 
-  const { padding, innerMargin, outerMargin, roundedCorners, thickness } = settings.border;
+  const { padding, roundedCorners, thickness } = settings.border;
 
   // Determine background fill
   let bgFill = settings.surfaceColors.custom;

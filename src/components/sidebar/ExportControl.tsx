@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Download, Image as ImageIcon, FileCode, RefreshCcw } from "lucide-react";
+import { Image as ImageIcon, FileCode, RefreshCcw } from "lucide-react";
 import { useSettings } from "@/hooks/useSettings";
 import { toPng } from 'html-to-image';
 import { saveAs } from 'file-saver';

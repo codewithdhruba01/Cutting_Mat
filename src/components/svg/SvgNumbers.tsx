@@ -14,7 +14,7 @@ export function SvgNumbers({ settings, widthPx, heightPx }: Props) {
   const majorPx = unitToPixels(settings.grid.majorSize, unit);
   const { top, bottom, left, right, fontSize, fontFamily, fontColor, fontWeight } = settings.numericGuides;
 
-  const labels: { x: number; y: number; text: string; anchor: "start" | "end" | "middle"; baseline: string }[] = [];
+  const labels: { x: number; y: number; text: string; anchor: "start" | "end" | "middle"; baseline: "middle" }[] = [];
 
   const margin = 10; // offset from the edge
 
@@ -60,7 +60,7 @@ export function SvgNumbers({ settings, widthPx, heightPx }: Props) {
           x={lbl.x}
           y={lbl.y}
           textAnchor={lbl.anchor}
-          alignmentBaseline={lbl.baseline as any}
+          alignmentBaseline={lbl.baseline}
         >
           {lbl.text}
         </text>

@@ -9,7 +9,7 @@ export function EdgeTicksControl() {
   const { settings, updateSettings } = useSettings();
   const { edgeTicks } = settings;
 
-  const handleChange = (field: string, val: any) => {
+  const handleChange = (field: string, val: number | boolean) => {
     updateSettings(prev => ({
       ...prev,
       edgeTicks: { ...prev.edgeTicks, [field]: val }
@@ -42,7 +42,7 @@ export function NumericGuidesControl() {
   const { settings, updateSettings } = useSettings();
   const { numericGuides } = settings;
 
-  const handleChange = (field: string, val: any) => {
+  const handleChange = (field: string, val: number | boolean) => {
     updateSettings(prev => ({
       ...prev,
       numericGuides: { ...prev.numericGuides, [field]: val }
