@@ -119,7 +119,7 @@ export const defaultSettings: AppSettings = {
   radiusGuides: { enabled: true, radii: [10, 20, 30], labels: true },
   angleGuides: { enabled: true, interval: 15, labels: true, dashed: true },
   tickMarks: { enabled: false, length: 10, thickness: 1, opacity: 0.5 },
-  diagonalGuides: { enabled: false, show45: false, show60: false },
+  diagonalGuides: { enabled: true, show45: false, show60: false },
   crosshair: { enabled: false, opacity: 0.3 },
   border: { thickness: 2, roundedCorners: 12, padding: 20, innerMargin: 10, outerMargin: 10 },
   advanced: { snap: false, lockAspectRatio: false, livePreview: true, showCoordinates: true, showOrigin: true },

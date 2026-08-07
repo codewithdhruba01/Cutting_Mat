@@ -1,6 +1,6 @@
 import { AppSettings } from "@/types";
 import { unitToPixels } from "@/utils/svg";
-import { Fragment } from "react";
+import React from "react";
 
 interface Props {
   settings: AppSettings;
@@ -14,48 +14,40 @@ export function SvgGuides({ settings, widthPx, heightPx }: Props) {
   const cy = heightPx;
   const maxRadius = Math.sqrt(widthPx * widthPx + heightPx * heightPx);
 
-  const { radiusGuides, angleGuides, diagonalGuides, crosshair, grid } = settings;
+  const { radiusGuides, angleGuides, diagonalGuides, crosshair, grid, matSize } = settings;
+  const unit = matSize.unit;
 
-  const elements = [];
+  const elements: React.ReactNode[] = [];
 
-  // Radius Guides
+  // Radius Guides (Arcs)
   if (radiusGuides.enabled) {
-    radiusGuides.radii.forEach((r, idx) => {
-      const rPx = unitToPixels(r, settings.matSize.unit);
+    radiusGuides.radii.forEach((radiusValue) => {
+      const r = unitToPixels(radiusValue, unit);
+      if (r <= 0) return;
+      
+      // Draw arc from right (x-axis) to top (y-axis)
+      // Start point: (r, cy)
+      // End point: (0, cy - r)
+      const pathData = `M ${r} ${cy} A ${r} ${r} 0 0 0 0 ${cy - r}`;
+      
       elements.push(
-        <circle
-          key={`r-${idx}`}
-          cx={cx}
-          cy={cy}
-          r={rPx}
+        <path
+          key={`rad-${radiusValue}`}
+          d={pathData}
           stroke={grid.color}
           strokeWidth={grid.minorThickness}
           fill="none"
         />
       );
-      if (radiusGuides.labels) {
-        elements.push(
-          <text
-            key={`r-lbl-${idx}`}
-            x={cx + rPx + 4}
-            y={cy}
-            fill={settings.numericGuides.fontColor}
-            fontSize={10}
-            alignmentBaseline="middle"
-          >
-            {r}
-          </text>
-        );
-      }
     });
   }
 
-  // Angle Guides
+  // Angle Guides (15, 30, 45, 60)
   if (angleGuides.enabled) {
-    const interval = angleGuides.interval || 15;
-    for (let angle = 0; angle <= 90; angle += interval) {
-      if (angle === 0 || angle === 90) continue; // Skip straight axes
-      
+    const specificAngles = [15, 30, 45, 60];
+    const r10 = unitToPixels(10, unit); // Radius 10 for label placement
+
+    specificAngles.forEach((angle) => {
       const rad = (angle * Math.PI) / 180;
       const dx = maxRadius * Math.cos(rad);
       const dy = maxRadius * Math.sin(rad);
@@ -69,18 +61,25 @@ export function SvgGuides({ settings, widthPx, heightPx }: Props) {
           y2={cy - dy}
           stroke={grid.color}
           strokeWidth={grid.minorThickness}
-          strokeDasharray={angleGuides.dashed ? "5,5" : "none"}
+          strokeDasharray={angleGuides.dashed ? "6,6" : "none"}
         />
       );
 
       if (angleGuides.labels) {
+        const labelR = r10; 
+        const labelX = cx + labelR * Math.cos(rad);
+        const labelY = cy - labelR * Math.sin(rad);
+        const offsetX = 10 * Math.cos(rad);
+        const offsetY = -10 * Math.sin(rad);
+        
         elements.push(
           <text
-            key={`ang-lbl-${angle}-1`}
-            x={cx + maxRadius * 0.8 * Math.cos(rad)}
-            y={cy - maxRadius * 0.8 * Math.sin(rad)}
+            key={`ang-lbl-${angle}`}
+            x={labelX + offsetX}
+            y={labelY + offsetY}
             fill={settings.numericGuides.fontColor}
-            fontSize={10}
+            fontSize={9}
+            fontFamily="var(--font-geist-mono), monospace"
             textAnchor="middle"
             alignmentBaseline="middle"
           >
@@ -88,20 +87,53 @@ export function SvgGuides({ settings, widthPx, heightPx }: Props) {
           </text>
         );
       }
-    }
+    });
   }
 
-  // Diagonal Guides (45 and 60)
+  // Exact Diagonal Pattern
   if (diagonalGuides.enabled) {
-    if (diagonalGuides.show45) {
-      elements.push(
-        <line key="diag-45-1" x1={0} y1={0} x2={widthPx} y2={heightPx} stroke={grid.color} strokeWidth={grid.majorThickness} />
-      );
-      elements.push(
-        <line key="diag-45-2" x1={widthPx} y1={0} x2={0} y2={heightPx} stroke={grid.color} strokeWidth={grid.majorThickness} />
-      );
-    }
-    // Simple 60 degree from corners if requested (though normally 60 originates from center in angle guides).
+    const cm35 = unitToPixels(35, unit);
+    const cm15 = unitToPixels(15, unit);
+    const cm50 = unitToPixels(50, unit);
+
+    elements.push(
+      <line
+        key="diag-2"
+        x1={cm15}
+        y1={heightPx}
+        x2={cm50}
+        y2={heightPx - cm35}
+        stroke={grid.color}
+        strokeWidth={grid.minorThickness}
+        strokeDasharray="6,6"
+      />
+    );
+
+    elements.push(
+      <line
+        key="diag-3"
+        x1={0}
+        y1={0}
+        x2={cm35}
+        y2={cm35}
+        stroke={grid.color}
+        strokeWidth={grid.minorThickness}
+        strokeDasharray="6,6"
+      />
+    );
+
+    elements.push(
+      <line
+        key="diag-4"
+        x1={cm15}
+        y1={0}
+        x2={cm50}
+        y2={cm35}
+        stroke={grid.color}
+        strokeWidth={grid.minorThickness}
+        strokeDasharray="6,6"
+      />
+    );
   }
 
   // Crosshair
@@ -114,5 +146,5 @@ export function SvgGuides({ settings, widthPx, heightPx }: Props) {
     );
   }
 
-  return <Fragment>{elements}</Fragment>;
+  return <g>{elements}</g>;
 }
