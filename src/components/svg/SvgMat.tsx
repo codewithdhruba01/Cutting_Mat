@@ -34,7 +34,6 @@ export function SvgMat() {
       width="100%"
       height="100%"
       style={{
-        boxShadow: 'var(--shadow-premium)',
         borderRadius: roundedCorners,
         backgroundColor: bgFill === 'transparent' ? 'white' : 'transparent', // For transparent preview visibility
       }}
