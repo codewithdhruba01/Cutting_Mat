@@ -1,9 +1,9 @@
 "use client";
 
-import { SettingsProvider } from "@/hooks/useSettings";
-import { ImageProvider } from "@/hooks/useImages";
-import { Sidebar, SidebarHeader, SidebarContent } from "@/components/sidebar/Sidebar";
-import { PreviewArea } from "@/components/preview/PreviewArea";
+import { SettingsProvider } from "@/contexts";
+import { ImageProvider } from "@/contexts";
+import { Sidebar, SidebarHeader, SidebarContent } from "@/components/sidebar";
+import { PreviewArea } from "@/components/preview";
 import { Drawer, DrawerContent, DrawerTrigger, DrawerTitle, DrawerHeader } from "@/components/ui/drawer";
 
 export default function Home() {

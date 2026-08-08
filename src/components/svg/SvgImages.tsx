@@ -1,4 +1,4 @@
-import { useImages } from "@/hooks/useImages";
+import { useImages } from "@/contexts";
 
 export function SvgImages() {
   const { images } = useImages();

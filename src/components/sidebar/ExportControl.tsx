@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Image as ImageIcon, FileCode, RefreshCcw } from "lucide-react";
-import { useSettings } from "@/hooks/useSettings";
+import { useSettings } from "@/contexts";
 import { toPng } from 'html-to-image';
 import { saveAs } from 'file-saver';
 

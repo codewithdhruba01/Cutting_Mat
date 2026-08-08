@@ -1,5 +1,5 @@
 import { AppSettings } from "@/types";
-import { pixelsToUnit, unitToPixels } from "@/utils/svg";
+import { pixelsToUnit, unitToPixels } from "@/utils/svg-utils";
 
 interface Props {
   settings: AppSettings;

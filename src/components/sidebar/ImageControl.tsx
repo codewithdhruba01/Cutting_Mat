@@ -1,13 +1,13 @@
 "use client";
 
-import { useImages } from "@/hooks/useImages";
+import { useImages } from "@/contexts";
 import { Button } from "@/components/ui/button";
 import { Upload, Trash2, Image as ImageIcon } from "lucide-react";
 import { useRef } from "react";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { useSettings } from "@/hooks/useSettings";
-import { unitToPixels } from "@/utils/svg";
+import { useSettings } from "@/contexts";
+import { unitToPixels } from "@/utils/svg-utils";
 
 export function ImageControl() {
   const { images, selectedImageId, addImage, removeImage, setSelectedImageId, updateImage } = useImages();

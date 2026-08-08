@@ -1,5 +1,5 @@
-import { useSettings } from "@/hooks/useSettings";
-import { unitToPixels } from "@/utils/svg";
+import { useSettings } from "@/contexts";
+import { unitToPixels } from "@/utils/svg-utils";
 import { SvgGrid } from "./SvgGrid";
 import { SvgTicks } from "./SvgTicks";
 import { SvgNumbers } from "./SvgNumbers";
