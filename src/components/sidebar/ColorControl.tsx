@@ -59,7 +59,7 @@ export function ColorControl() {
           >
             <span 
               className={cn(
-                "w-3.5 h-3.5 rounded-[4px] border border-border shadow-sm flex-shrink-0",
+                "w-3.5 h-3.5 rounded-lg border border-border shadow-sm shrink-0",
                 surfaceColors.preset === p.name ? "ring-2 ring-foreground ring-offset-1 ring-offset-background" : ""
               )}
               style={{ backgroundColor: p.value }}
@@ -78,7 +78,7 @@ export function ColorControl() {
         >
           <span 
             className={cn(
-              "w-3.5 h-3.5 rounded-[4px] border border-border shadow-sm flex-shrink-0",
+              "w-3.5 h-3.5 rounded-lg border border-border shadow-sm shrink-0",
               surfaceColors.preset === 'Custom' ? "ring-2 ring-foreground ring-offset-1 ring-offset-background" : ""
             )}
             style={{ background: 'linear-gradient(135deg, #111111 50%, #d8f26b 50%)' }}
