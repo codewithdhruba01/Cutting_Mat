@@ -51,7 +51,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${jetBrainsMono.variable} ${ibmPlexMono.variable} ${robotoMono.variable} ${inter.variable}`}
       suppressHydrationWarning
     >
-      <body className="antialiased overflow-hidden w-screen h-screen">
+      <body className="antialiased overflow-hidden w-screen h-screen" suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
