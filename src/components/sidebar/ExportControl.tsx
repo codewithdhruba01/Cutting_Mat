@@ -27,20 +27,37 @@ export function ExportControl() {
   };
 
   const handleExportPNG = async () => {
-    const container = document.getElementById('svg-export-container');
-    if (!container) return;
+    const matElement = document.getElementById('svg-mat');
+    if (!matElement) return;
     try {
       // Temporarily hide handles
-      const handles = container.querySelectorAll('.no-export-handles');
+      const handles = matElement.querySelectorAll('.no-export-handles');
       handles.forEach(el => (el as SVGElement).style.display = 'none');
 
-      // Temporarily remove transform to get true size for export
-      const oldTransform = container.style.transform;
-      container.style.transform = 'none';
-      const dataUrl = await toPng(container, { pixelRatio: 2 });
-      container.style.transform = oldTransform;
+      // Temporarily remove inline background color so 'transparent' mat is actually transparent
+      const oldBg = matElement.style.backgroundColor;
+      if (oldBg === 'white') {
+        matElement.style.backgroundColor = 'transparent';
+      }
+
+      let width, height;
+      const viewBox = matElement.getAttribute('viewBox');
+      if (viewBox) {
+        const [, , w, h] = viewBox.split(' ').map(Number);
+        width = w;
+        height = h;
+      }
+
+      const dataUrl = await toPng(matElement as HTMLElement, { 
+        pixelRatio: 2,
+        width,
+        height,
+        canvasWidth: width ? width * 2 : undefined,
+        canvasHeight: height ? height * 2 : undefined
+      });
       
-      // Restore handles
+      // Restore handles and background
+      matElement.style.backgroundColor = oldBg;
       handles.forEach(el => (el as SVGElement).style.display = '');
       
       saveAs(dataUrl, "cutting-mat.png");
