@@ -1,37 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Professional SVG Cutting Mat Background Generator
+
+![Cutting Mat Background Generator Banner](./public/Assets/home.png)
+
+A premium, highly customizable web application designed to generate precision SVG cutting mat backgrounds. Built for designers, crafters, and developers who need pixel-perfect grids, customizable layouts, and robust export capabilities.
+
+##  Key Features
+
+* **Advanced Grid Customization**: Fine-tune your cutting mat's dimensions, padding, grid density, sub-grids, and visual thickness.
+* **Unit Flexibility**: Seamlessly toggle between Millimeters (mm), Centimeters (cm), and Inches (in) with mathematically precise scaling.
+* **Image Import & Manipulation**: Upload overlay images directly onto the mat. Precisely scale, rotate, adjust opacity, and modify border radius through dedicated controls.
+* **Robust History System**: Make mistakes fearlessly. Features a fully-integrated, debounced global Undo/Redo engine that tracks both mat settings and image manipulations.
+* **Dark & Light Themes**: Beautiful, hand-crafted color palettes with system-sync and seamless dark mode toggling, ensuring the app looks gorgeous in any lighting.
+* **Precision Exporting**: 
+  * **Export to SVG**: Download a pristine, infinitely scalable vector graphic of your mat.
+  * **Export to PNG**: Download a high-resolution, background-free transparent PNG of your current workspace.
+* **Mobile Responsive**: Carefully crafted slide-up drawer controls for mobile users, keeping the workspace unhindered on smaller devices.
+
+## Technology Stack
+
+This project is built with modern, performant web technologies:
+
+* **Framework**: [Next.js](https://nextjs.org/) (App Router)
+* **Language**: [TypeScript](https://www.typescriptlang.org/)
+* **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+* **UI Components**: [Shadcn UI](https://ui.shadcn.com/) & Radix UI
+* **Icons**: [Lucide React](https://lucide.dev/)
+* **Theme Management**: `next-themes`
 
 ## Getting Started
 
-First, run the development server:
+To run this project locally, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
+Make sure you have Node.js installed (v18 or higher recommended).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/codewithdhruba01/Cutting_Mat.git
+   cd cutting-mat
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   # or yarn install
+   # or pnpm install
+   ```
 
-## Learn More
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   # or yarn dev
+   # or pnpm dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Open your browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000) to see the application running.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+##  Project Structure highlights
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* `src/app/`: Next.js App Router pages and root layouts.
+* `src/components/`: Reusable UI components (Sidebar, TopToolbar, PreviewArea).
+* `src/contexts/`: Global state management (`WorkspaceContext` for undo/redo, `ThemeContext`).
+* `src/utils/`: Math and conversion utilities for generating pixel-perfect SVGs.
+* `src/types/`: Centralized TypeScript definitions.
 
-## Deploy on Vercel
+## 🤝 Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Contributions, issues, and feature requests are welcome! 
+Feel free to check [issues page](https://github.com/codewithdhruba/Cutting_Mat/issues) if you want to contribute.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Cutting_Mat
+## 📝 License
+
+This project is open-source and available under the [MIT License](LICENSE).
+
+---
+*Crafted with precision by [@codewithdhruba](https://codewithdhruba.in/)*
