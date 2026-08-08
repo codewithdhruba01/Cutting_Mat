@@ -1,6 +1,8 @@
 "use client";
 
-import { Sun } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Sun, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
 import { MatSizeControl } from "./MatSizeControl";
 import { ColorControl } from "./ColorControl";
 import { GridControl } from "./GridControl";
@@ -19,6 +21,13 @@ function Card({ title, children, description }: { title: string, children: React
 }
 
 export function SidebarHeader() {
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme, resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <div className="flex justify-between items-start">
       <div>
@@ -30,8 +39,11 @@ export function SidebarHeader() {
           Adjust size, grid, ticks, colors, and typography. Use it for backgrounds, and wallpapers.
         </p>
       </div>
-      <button className="text-muted-foreground hover:text-foreground mt-1 ml-4">
-        <Sun className="h-5 w-5" />
+      <button 
+        className="text-muted-foreground hover:text-foreground mt-1 ml-4"
+        onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      >
+        {mounted && resolvedTheme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
       </button>
     </div>
   );
@@ -79,7 +91,7 @@ export function Sidebar({ className }: { className?: string }) {
       
       <div className="p-6 pt-4 border-t text-left">
          <p className="text-xs text-muted-foreground">
-            Made by <a href="#" className="underline">@marijanapav</a>
+            Made by <a href="https://codewithdhruba.in/" className="underline">@codewithdhruba</a>
          </p>
       </div>
     </div>

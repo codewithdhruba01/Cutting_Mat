@@ -39,7 +39,7 @@ export default function Home() {
             </DrawerContent>
           </Drawer>
           <p className="text-xs text-muted-foreground">
-            Made by <a href="#" className="underline hover:text-foreground transition-colors">@marijanapav</a>
+            Made by <a href="https://codewithdhruba.in/" className="underline hover:text-foreground transition-colors">@codewithdhruba</a>
           </p>
         </div>
       </main>
