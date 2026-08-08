@@ -124,3 +124,33 @@
     background: #a1a1aa;
   }
 }
+
+@layer utilities {
+  .auto-hide-scrollbar {
+    scrollbar-color: transparent transparent;
+    transition: scrollbar-color 0.3s ease;
+  }
+  .auto-hide-scrollbar:hover {
+    scrollbar-color: #d4d4d8 transparent;
+  }
+  .dark .auto-hide-scrollbar:hover {
+    scrollbar-color: #52525b transparent;
+  }
+  
+  .auto-hide-scrollbar::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+  .auto-hide-scrollbar:hover::-webkit-scrollbar-thumb {
+    background-color: #d4d4d8;
+  }
+  .dark .auto-hide-scrollbar:hover::-webkit-scrollbar-thumb {
+    background-color: #52525b;
+  }
+  
+  .auto-hide-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #a1a1aa !important;
+  }
+  .dark .auto-hide-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #71717a !important;
+  }
+}
