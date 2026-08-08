@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { useTheme } from "next-themes";
 import { MatSizeControl } from "./MatSizeControl";
 import { ColorControl } from "./ColorControl";
@@ -82,22 +82,43 @@ export function SidebarContent() {
 }
 
 export function Sidebar({ className }: { className?: string }) {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
   return (
-    <div className={cn("w-95 shrink-0 h-full bg-background border-r flex flex-col z-20", className)} suppressHydrationWarning>
-      <div className="flex-1 overflow-y-auto p-6 auto-hide-scrollbar">
-        
-        <div className="mb-8">
-          <SidebarHeader />
+    <div className={cn("relative z-20 h-full shrink-0 transition-all duration-300", isCollapsed ? "w-0" : "w-95", className)} suppressHydrationWarning>
+      <div className={cn("h-full w-full bg-background flex flex-col overflow-hidden", !isCollapsed && "border-r")}>
+        <div className="flex flex-col h-full w-95 shrink-0">
+          <div className="flex-1 overflow-y-auto p-6 auto-hide-scrollbar">
+            
+            <div className="mb-8">
+              <SidebarHeader />
+            </div>
+
+            <SidebarContent />
+
+          </div>
+          
+          <div className="p-6 pt-4 border-t text-left">
+             <p className="text-xs text-muted-foreground">
+                Made by <a href="https://codewithdhruba.in/" className="underline">@codewithdhruba</a>
+             </p>
+          </div>
         </div>
-
-        <SidebarContent />
-
       </div>
       
-      <div className="p-6 pt-4 border-t text-left">
-         <p className="text-xs text-muted-foreground">
-            Made by <a href="https://codewithdhruba.in/" className="underline">@codewithdhruba</a>
-         </p>
+      <div 
+        className={cn(
+          "absolute top-6 z-50 transition-all duration-300",
+          isCollapsed ? "left-4" : "left-full -translate-x-1/2"
+        )}
+      >
+        <button 
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="bg-background border rounded-full p-1.5 shadow-sm hover:bg-muted text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center"
+          title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+        >
+          {isCollapsed ? <PanelLeftOpen className="w-4 h-4" /> : <PanelLeftClose className="w-4 h-4" />}
+        </button>
       </div>
     </div>
   );
