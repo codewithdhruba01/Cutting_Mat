@@ -59,17 +59,17 @@ export function TopToolbar() {
       
       {/* Undo/Redo */}
       <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-white" disabled={!canUndo} onClick={undo} title="Undo">
-        <Undo2 className="w-[18px] h-[18px]" />
+        <Undo2 className="w-4.5 h-4.5" />
       </Button>
       <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-white" disabled={!canRedo} onClick={redo} title="Redo">
-        <Redo2 className="w-[18px] h-[18px]" />
+        <Redo2 className="w-4.5 h-4.5" />
       </Button>
 
       <div className="w-px h-6 bg-border/20 mx-1" />
 
       {/* Add Image */}
       <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-white" onClick={() => fileInputRef.current?.click()} title="Add Image">
-        <ImagePlus className="w-[18px] h-[18px]" />
+        <ImagePlus className="w-4.5 h-4.5" />
       </Button>
 
       {/* Start Over */}
@@ -81,15 +81,15 @@ export function TopToolbar() {
 
       {/* Fullscreen */}
       <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-white" onClick={handleFullscreen} title="Full Screen">
-        <Maximize2 className="w-[18px] h-[18px]" />
+        <Maximize2 className="w-4.5 h-4.5" />
       </Button>
       
       {/* Visual Placeholders from Reference */}
       <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-white" title="Feedback (Coming Soon)">
-        <MessageSquareWarning className="w-[18px] h-[18px]" />
+        <MessageSquareWarning className="w-4.5 h-4.5" />
       </Button>
       <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-white" title="History (Coming Soon)">
-        <Clock className="w-[18px] h-[18px]" />
+        <Clock className="w-4.5 h-4.5" />
       </Button>
     </div>
   );
