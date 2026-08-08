@@ -38,7 +38,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://svg-cutting-mat.vercel.app"),
   title: {
-    default: "Professional SVG Cutting Mat Background Generator",
+    default: "Cutting Mat Background Generator",
     template: "%s | SVG Cutting Mat Generator",
   },
   description: "A premium design tool to generate highly customizable SVG cutting mat backgrounds. Create pixel-perfect grid mats, adjust colors, and export precision SVGs.",
@@ -70,6 +70,17 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-96x96.png', type: 'image/png', sizes: '96x96' },
+      { url: '/favicon.ico', type: 'image/x-icon' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  manifest: '/manifest.webmanifest',
 };
 
 export default function RootLayout({
