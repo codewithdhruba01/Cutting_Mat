@@ -21,7 +21,7 @@ function Card({ title, children, description }: { title: string, children: React
   );
 }
 
-export function SidebarHeader({ onToggleCollapse }: { onToggleCollapse?: () => void }) {
+export function SidebarHeader() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
 
@@ -48,15 +48,6 @@ export function SidebarHeader({ onToggleCollapse }: { onToggleCollapse?: () => v
         >
           {mounted && resolvedTheme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
         </button>
-        {onToggleCollapse && (
-          <button 
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            onClick={onToggleCollapse}
-            title="Collapse Sidebar"
-          >
-            <PanelLeftClose className="h-5 w-5" />
-          </button>
-        )}
       </div>
     </div>
   );
@@ -103,7 +94,7 @@ export function Sidebar({ className }: { className?: string }) {
           <div className="flex-1 overflow-y-auto p-6 auto-hide-scrollbar">
             
             <div className="mb-8">
-              <SidebarHeader onToggleCollapse={() => setIsCollapsed(true)} />
+              <SidebarHeader />
             </div>
 
             <SidebarContent />
@@ -121,15 +112,15 @@ export function Sidebar({ className }: { className?: string }) {
       <div 
         className={cn(
           "absolute top-6 z-50 transition-all duration-300",
-          isCollapsed ? "left-6 opacity-100" : "left-0 opacity-0 pointer-events-none"
+          isCollapsed ? "left-6" : "left-full translate-x-3"
         )}
       >
         <button 
-          onClick={() => setIsCollapsed(false)}
-          className="bg-background border rounded-md p-2 shadow-sm hover:bg-muted text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center"
-          title="Expand Sidebar"
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="bg-background border rounded-full p-1.5 shadow-sm hover:bg-muted text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center"
+          title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
         >
-          <PanelLeftOpen className="w-5 h-5" />
+          {isCollapsed ? <PanelLeftOpen className="w-4 h-4" /> : <PanelLeftClose className="w-4 h-4" />}
         </button>
       </div>
     </div>
