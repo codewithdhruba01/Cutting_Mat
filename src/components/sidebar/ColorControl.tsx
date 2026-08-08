@@ -16,8 +16,12 @@ const PRESETS = [
 ];
 
 export function ColorControl() {
-  const { settings, updateSettings } = useSettings();
+  const { settings, updateSettings, isLoaded } = useSettings();
   const { surfaceColors } = settings;
+
+  if (!isLoaded) {
+    return <div className="mt-4 animate-pulse h-32 bg-muted/20 rounded-md" />;
+  }
 
   const handlePresetSelect = (preset: { name: string; value: string }) => {
     updateSettings(prev => ({
