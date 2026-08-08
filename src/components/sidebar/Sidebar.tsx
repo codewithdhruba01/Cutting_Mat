@@ -66,7 +66,7 @@ export function SidebarContent() {
 
 export function Sidebar({ className }: { className?: string }) {
   return (
-    <div className={cn("w-[380px] flex-shrink-0 h-full bg-background border-r flex flex-col z-20", className)}>
+    <div className={cn("w-95 shrink-0 h-full bg-background border-r flex flex-col z-20", className)} suppressHydrationWarning>
       <div className="flex-1 overflow-y-auto p-6">
         
         <div className="mb-8">

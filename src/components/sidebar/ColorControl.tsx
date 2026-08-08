@@ -96,6 +96,7 @@ export function ColorControl() {
               value={surfaceColors.custom} 
               onChange={(e) => handleCustomColor(e.target.value)}
               className="absolute -top-4 -left-4 w-[200%] h-[200%] cursor-pointer"
+              suppressHydrationWarning
             />
           </div>
         </div>
@@ -108,6 +109,7 @@ export function ColorControl() {
               value={settings.grid.color} 
               onChange={(e) => handleGridColor(e.target.value)}
               className="absolute -top-4 -left-4 w-[200%] h-[200%] cursor-pointer"
+              suppressHydrationWarning
             />
           </div>
         </div>
