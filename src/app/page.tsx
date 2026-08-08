@@ -1,15 +1,13 @@
 "use client";
 
-import { SettingsProvider } from "@/contexts";
-import { ImageProvider } from "@/contexts";
+import { WorkspaceProvider } from "@/contexts";
 import { Sidebar, SidebarHeader, SidebarContent } from "@/components/sidebar";
 import { PreviewArea } from "@/components/preview";
 import { Drawer, DrawerContent, DrawerTrigger, DrawerTitle, DrawerHeader } from "@/components/ui/drawer";
 
 export default function Home() {
   return (
-    <SettingsProvider>
-      <ImageProvider>
+    <WorkspaceProvider>
         <main className="flex flex-col lg:flex-row h-dvh w-screen fixed inset-0 overflow-hidden bg-background">
           
           {/* Desktop Sidebar */}
@@ -45,7 +43,6 @@ export default function Home() {
             </p>
           </div>
         </main>
-      </ImageProvider>
-    </SettingsProvider>
+    </WorkspaceProvider>
   );
 }
