@@ -36,8 +36,40 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Professional SVG Cutting Mat Background Generator",
-  description: "A premium design tool to generate highly customizable SVG cutting mat backgrounds.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://svg-cutting-mat.vercel.app"),
+  title: {
+    default: "Professional SVG Cutting Mat Background Generator",
+    template: "%s | SVG Cutting Mat Generator",
+  },
+  description: "A premium design tool to generate highly customizable SVG cutting mat backgrounds. Create pixel-perfect grid mats, adjust colors, and export precision SVGs.",
+  keywords: ["svg", "cutting mat", "background generator", "grid generator", "design tool", "vector graphics", "custom mat"],
+  authors: [{ name: "codewithdhruba", url: "https://codewithdhruba.in/" }],
+  creator: "codewithdhruba",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    title: "Professional SVG Cutting Mat Background Generator",
+    description: "A premium design tool to generate highly customizable SVG cutting mat backgrounds. Create pixel-perfect grid mats, adjust colors, and export precision SVGs.",
+    siteName: "SVG Cutting Mat Generator",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Professional SVG Cutting Mat Background Generator",
+    description: "A premium design tool to generate highly customizable SVG cutting mat backgrounds.",
+    creator: "@codewithdhruba",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
