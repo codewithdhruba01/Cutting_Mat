@@ -21,7 +21,7 @@ function Card({ title, children, description }: { title: string, children: React
   );
 }
 
-export function SidebarHeader() {
+export function SidebarHeader({ hideThemeToggle }: { hideThemeToggle?: boolean }) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
 
@@ -40,15 +40,17 @@ export function SidebarHeader() {
           Adjust size, grid, ticks, colors, and typography. Use it for backgrounds, and wallpapers.
         </p>
       </div>
-      <div className="flex items-center gap-3 mt-1 ml-4 shrink-0">
-        <button 
-          className="text-muted-foreground hover:text-foreground transition-colors"
-          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-          title="Toggle Theme"
-        >
-          {mounted && resolvedTheme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-        </button>
-      </div>
+      {!hideThemeToggle && (
+        <div className="flex items-center gap-3 mt-1 ml-4 shrink-0">
+          <button 
+            className="text-muted-foreground hover:text-foreground transition-colors"
+            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            title="Toggle Theme"
+          >
+            {mounted && resolvedTheme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
@@ -86,6 +88,12 @@ export function SidebarContent() {
 
 export function Sidebar({ className }: { className?: string }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme, resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <div className={cn("relative z-20 h-full shrink-0 transition-all duration-300", isCollapsed ? "w-0" : "w-95", className)} suppressHydrationWarning>
@@ -94,7 +102,7 @@ export function Sidebar({ className }: { className?: string }) {
           <div className="flex-1 overflow-y-auto p-6 auto-hide-scrollbar">
             
             <div className="mb-8">
-              <SidebarHeader />
+              <SidebarHeader hideThemeToggle={true} />
             </div>
 
             <SidebarContent />
@@ -111,7 +119,7 @@ export function Sidebar({ className }: { className?: string }) {
       
       <div 
         className={cn(
-          "absolute top-6 z-50 transition-all duration-300",
+          "absolute top-6 z-50 transition-all duration-300 flex flex-col gap-3",
           isCollapsed ? "left-6" : "left-full translate-x-3"
         )}
       >
@@ -121,6 +129,14 @@ export function Sidebar({ className }: { className?: string }) {
           title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
         >
           {isCollapsed ? <PanelLeftOpen className="w-4 h-4" /> : <PanelLeftClose className="w-4 h-4" />}
+        </button>
+
+        <button 
+          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+          className="bg-background border rounded-full p-1.5 shadow-sm hover:bg-muted text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center"
+          title="Toggle Theme"
+        >
+          {mounted && resolvedTheme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
         </button>
       </div>
     </div>
