@@ -7,6 +7,7 @@ import { MatSizeControl } from "./MatSizeControl";
 import { ColorControl } from "./ColorControl";
 import { GridControl } from "./GridControl";
 import { EdgeTicksControl, NumericGuidesControl, AdditionalGuidesControl } from "./OtherControls";
+import { ImageControl } from "./ImageControl";
 import { ExportControl } from "./ExportControl";
 import { cn } from "@/lib/utils";
 
@@ -67,6 +68,10 @@ export function SidebarContent() {
           <GridControl />
           <AdditionalGuidesControl />
         </div>
+      </Card>
+
+      <Card title="Images" description="Import images to place on the cutting mat.">
+        <ImageControl />
       </Card>
 
       <Card title="Export">

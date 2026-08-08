@@ -4,6 +4,7 @@ import { SvgGrid } from "./SvgGrid";
 import { SvgTicks } from "./SvgTicks";
 import { SvgNumbers } from "./SvgNumbers";
 import { SvgGuides } from "./SvgGuides";
+import { SvgImages } from "./SvgImages";
 
 export function SvgMat() {
   const { settings, isLoaded } = useSettings();
@@ -77,6 +78,7 @@ export function SvgMat() {
           <SvgGrid settings={settings} widthPx={widthPx} heightPx={heightPx} />
           <SvgTicks settings={settings} widthPx={widthPx} heightPx={heightPx} />
           <SvgGuides settings={settings} widthPx={widthPx} heightPx={heightPx} />
+          <SvgImages />
         </g>
         
         {/* Draw numbers outside clip so they can overhang if needed, though they shouldn't with margin */}
