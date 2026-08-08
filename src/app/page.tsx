@@ -8,7 +8,7 @@ import { Drawer, DrawerContent, DrawerTrigger, DrawerTitle, DrawerHeader } from 
 export default function Home() {
   return (
     <SettingsProvider>
-      <main className="flex flex-col lg:flex-row h-[100dvh] w-screen fixed inset-0 overflow-hidden bg-background">
+      <main className="flex flex-col lg:flex-row h-dvh w-screen fixed inset-0 overflow-hidden bg-background">
         
         {/* Desktop Sidebar */}
         <Sidebar className="hidden lg:flex" />
