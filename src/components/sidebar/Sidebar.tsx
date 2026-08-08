@@ -21,7 +21,7 @@ function Card({ title, children, description }: { title: string, children: React
   );
 }
 
-export function SidebarHeader() {
+export function SidebarHeader({ onToggleCollapse }: { onToggleCollapse?: () => void }) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
 
@@ -40,12 +40,24 @@ export function SidebarHeader() {
           Adjust size, grid, ticks, colors, and typography. Use it for backgrounds, and wallpapers.
         </p>
       </div>
-      <button 
-        className="text-muted-foreground hover:text-foreground mt-1 ml-4"
-        onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      >
-        {mounted && resolvedTheme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-      </button>
+      <div className="flex items-center gap-3 mt-1 ml-4 shrink-0">
+        <button 
+          className="text-muted-foreground hover:text-foreground transition-colors"
+          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+          title="Toggle Theme"
+        >
+          {mounted && resolvedTheme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+        </button>
+        {onToggleCollapse && (
+          <button 
+            className="text-muted-foreground hover:text-foreground transition-colors"
+            onClick={onToggleCollapse}
+            title="Collapse Sidebar"
+          >
+            <PanelLeftClose className="h-5 w-5" />
+          </button>
+        )}
+      </div>
     </div>
   );
 }
@@ -91,7 +103,7 @@ export function Sidebar({ className }: { className?: string }) {
           <div className="flex-1 overflow-y-auto p-6 auto-hide-scrollbar">
             
             <div className="mb-8">
-              <SidebarHeader />
+              <SidebarHeader onToggleCollapse={() => setIsCollapsed(true)} />
             </div>
 
             <SidebarContent />
@@ -109,15 +121,15 @@ export function Sidebar({ className }: { className?: string }) {
       <div 
         className={cn(
           "absolute top-6 z-50 transition-all duration-300",
-          isCollapsed ? "left-4" : "left-full -translate-x-1/2"
+          isCollapsed ? "left-6 opacity-100" : "left-0 opacity-0 pointer-events-none"
         )}
       >
         <button 
-          onClick={() => setIsCollapsed(!isCollapsed)}
-          className="bg-background border rounded-full p-1.5 shadow-sm hover:bg-muted text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center"
-          title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+          onClick={() => setIsCollapsed(false)}
+          className="bg-background border rounded-md p-2 shadow-sm hover:bg-muted text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center"
+          title="Expand Sidebar"
         >
-          {isCollapsed ? <PanelLeftOpen className="w-4 h-4" /> : <PanelLeftClose className="w-4 h-4" />}
+          <PanelLeftOpen className="w-5 h-5" />
         </button>
       </div>
     </div>
