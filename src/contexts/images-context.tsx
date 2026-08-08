@@ -21,6 +21,7 @@ interface ImageContextProps {
   addImage: (image: Omit<MatImage, "id">) => void;
   updateImage: (id: string, update: Partial<MatImage>) => void;
   removeImage: (id: string) => void;
+  clearImages: () => void;
   setSelectedImageId: (id: string | null) => void;
 }
 
@@ -55,6 +56,18 @@ export function ImageProvider({ children }: { children: ReactNode }) {
     setSelectedImageId((prevId) => (prevId === id ? null : prevId));
   }, []);
 
+  const clearImages = useCallback(() => {
+    setImages((prev) => {
+      prev.forEach((img) => {
+        if (img.url.startsWith("blob:")) {
+          URL.revokeObjectURL(img.url);
+        }
+      });
+      return [];
+    });
+    setSelectedImageId(null);
+  }, []);
+
   return (
     <ImageContext.Provider
       value={{
@@ -63,6 +76,7 @@ export function ImageProvider({ children }: { children: ReactNode }) {
         addImage,
         updateImage,
         removeImage,
+        clearImages,
         setSelectedImageId,
       }}
     >
