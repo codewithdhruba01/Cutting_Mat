@@ -64,7 +64,7 @@ export function TopToolbar() {
   };
 
   return (
-    <div className="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-0.5 sm:gap-1 bg-[#1c1c1c] p-1 sm:p-1.5 rounded-full border border-border/10 shadow-xl backdrop-blur-md w-[95%] sm:w-auto justify-center max-w-fit">
+    <div className="flex items-center gap-0.5 sm:gap-1 bg-[#1c1c1c] p-1 sm:p-1.5 rounded-full border border-border/10 shadow-xl backdrop-blur-md w-full sm:w-auto justify-center max-w-fit">
       <input
         type="file"
         accept="image/png, image/jpeg, image/svg+xml"
