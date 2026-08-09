@@ -11,7 +11,15 @@ import { ImageControl } from "./ImageControl";
 import { ExportControl } from "./ExportControl";
 import { cn } from "@/lib/utils";
 
-function Card({ title, children, description }: { title: string, children: React.ReactNode, description?: string }) {
+function Card({
+  title,
+  children,
+  description,
+}: {
+  title: string;
+  children: React.ReactNode;
+  description?: string;
+}) {
   return (
     <div className="bg-card border rounded-xl p-4 shadow-sm mb-4">
       <h3 className="font-bold font-sans text-sm mb-1">{title}</h3>
@@ -23,9 +31,10 @@ function Card({ title, children, description }: { title: string, children: React
 
 export function SidebarHeader({ hideThemeToggle }: { hideThemeToggle?: boolean }) {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -36,18 +45,23 @@ export function SidebarHeader({ hideThemeToggle }: { hideThemeToggle?: boolean }
           Cutting mat bg generator
         </h1>
         <p className="text-xs text-muted-foreground font-mono leading-relaxed">
-          Fully customizable SVG cutting mat.<br/>
+          Fully customizable SVG cutting mat.
+          <br />
           Adjust size, grid, ticks, colors, and typography. Use it for backgrounds, and wallpapers.
         </p>
       </div>
       {!hideThemeToggle && (
         <div className="flex items-center gap-3 mt-1 ml-4 shrink-0">
-          <button 
+          <button
             className="text-muted-foreground hover:text-foreground transition-colors"
             onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
             title="Toggle Theme"
           >
-            {mounted && resolvedTheme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            {mounted && resolvedTheme === "dark" ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
           </button>
         </div>
       )}
@@ -62,7 +76,10 @@ export function SidebarContent() {
         <MatSizeControl />
       </Card>
 
-      <Card title="Surface" description="Control the mat's color, choose from a preset or create your own.">
+      <Card
+        title="Surface"
+        description="Control the mat's color, choose from a preset or create your own."
+      >
         <ColorControl />
       </Card>
 
@@ -89,54 +106,76 @@ export function SidebarContent() {
 export function Sidebar({ className }: { className?: string }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
   return (
-    <div className={cn("relative z-20 h-full shrink-0 transition-all duration-300", isCollapsed ? "w-0" : "w-95", className)} suppressHydrationWarning>
-      <div className={cn("h-full w-full bg-background flex flex-col overflow-hidden", !isCollapsed && "border-r")}>
+    <div
+      className={cn(
+        "relative z-20 h-full shrink-0 transition-all duration-300",
+        isCollapsed ? "w-0" : "w-95",
+        className
+      )}
+      suppressHydrationWarning
+    >
+      <div
+        className={cn(
+          "h-full w-full bg-background flex flex-col overflow-hidden",
+          !isCollapsed && "border-r"
+        )}
+      >
         <div className="flex flex-col h-full w-95 shrink-0">
           <div className="flex-1 overflow-y-auto p-6 auto-hide-scrollbar">
-            
             <div className="mb-8">
               <SidebarHeader hideThemeToggle={true} />
             </div>
 
             <SidebarContent />
-
           </div>
-          
+
           <div className="p-6 pt-4 border-t text-left">
-             <p className="text-xs text-muted-foreground">
-                Made by <a href="https://codewithdhruba.in/" className="underline">@codewithdhruba</a>
-             </p>
+            <p className="text-xs text-muted-foreground">
+              Made by{" "}
+              <a href="https://codewithdhruba.in/" className="underline">
+                @codewithdhruba
+              </a>
+            </p>
           </div>
         </div>
       </div>
-      
-      <div 
+
+      <div
         className={cn(
           "absolute top-6 z-50 transition-all duration-300 flex flex-col gap-3",
           isCollapsed ? "left-6" : "left-full translate-x-3"
         )}
       >
-        <button 
+        <button
           onClick={() => setIsCollapsed(!isCollapsed)}
           className="bg-background border rounded-full p-1.5 shadow-sm hover:bg-muted text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center"
           title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
         >
-          {isCollapsed ? <PanelLeftOpen className="w-4 h-4" /> : <PanelLeftClose className="w-4 h-4" />}
+          {isCollapsed ? (
+            <PanelLeftOpen className="w-4 h-4" />
+          ) : (
+            <PanelLeftClose className="w-4 h-4" />
+          )}
         </button>
 
-        <button 
+        <button
           onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
           className="bg-background border rounded-full p-1.5 shadow-sm hover:bg-muted text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center"
           title="Toggle Theme"
         >
-          {mounted && resolvedTheme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          {mounted && resolvedTheme === "dark" ? (
+            <Sun className="w-4 h-4" />
+          ) : (
+            <Moon className="w-4 h-4" />
+          )}
         </button>
       </div>
     </div>

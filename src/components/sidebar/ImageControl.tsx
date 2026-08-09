@@ -10,7 +10,8 @@ import { useSettings } from "@/contexts";
 import { unitToPixels } from "@/utils/svg-utils";
 
 export function ImageControl() {
-  const { images, selectedImageId, addImage, removeImage, setSelectedImageId, updateImage } = useImages();
+  const { images, selectedImageId, addImage, removeImage, setSelectedImageId, updateImage } =
+    useImages();
   const { settings } = useSettings();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -21,7 +22,7 @@ export function ImageControl() {
     if (!file) return;
 
     const url = URL.createObjectURL(file);
-    
+
     // Create an image element to get the original dimensions
     const img = new Image();
     img.onload = () => {
@@ -82,7 +83,9 @@ export function ImageControl() {
 
       {images.length > 0 && (
         <div className="space-y-2 mt-4">
-          <Label className="text-xs text-muted-foreground uppercase tracking-wider">Uploaded Images</Label>
+          <Label className="text-xs text-muted-foreground uppercase tracking-wider">
+            Uploaded Images
+          </Label>
           <div className="space-y-2 max-h-40 overflow-y-auto pr-2">
             {images.map((img) => (
               <div
@@ -117,21 +120,25 @@ export function ImageControl() {
 
       {selectedImage && (
         <div className="space-y-4 mt-6 pt-4 border-t border-border/50">
-          <Label className="text-xs font-bold text-primary uppercase tracking-wider block mb-2">Edit Image</Label>
-          
+          <Label className="text-xs font-bold text-primary uppercase tracking-wider block mb-2">
+            Edit Image
+          </Label>
+
           <div className="space-y-3">
             <div className="space-y-1">
               <div className="flex justify-between">
                 <Label className="text-xs">Size (Width)</Label>
-                <span className="text-xs text-muted-foreground">{Math.round(selectedImage.width)}px</span>
+                <span className="text-xs text-muted-foreground">
+                  {Math.round(selectedImage.width)}px
+                </span>
               </div>
               <Slider
                 min={10}
                 max={2000}
                 step={1}
                 value={[selectedImage.width]}
-                onValueChange={(val: any) => {
-                  const newW = Array.isArray(val) ? val[0] : (typeof val === 'number' ? val : val[0]);
+                onValueChange={(val: number[]) => {
+                  const newW = Array.isArray(val) ? val[0] : typeof val === "number" ? val : val[0];
                   if (newW === undefined) return;
                   const aspect = selectedImage.width / selectedImage.height;
                   updateImage(selectedImage.id, { width: newW, height: newW / aspect });
@@ -142,15 +149,17 @@ export function ImageControl() {
             <div className="space-y-1">
               <div className="flex justify-between">
                 <Label className="text-xs">X Position</Label>
-                <span className="text-xs text-muted-foreground">{Math.round(selectedImage.x)}px</span>
+                <span className="text-xs text-muted-foreground">
+                  {Math.round(selectedImage.x)}px
+                </span>
               </div>
               <Slider
                 min={-500}
                 max={2000}
                 step={1}
                 value={[selectedImage.x]}
-                onValueChange={(val: any) => {
-                  const v = Array.isArray(val) ? val[0] : (typeof val === 'number' ? val : val[0]);
+                onValueChange={(val: number[]) => {
+                  const v = Array.isArray(val) ? val[0] : typeof val === "number" ? val : val[0];
                   if (v !== undefined) updateProp("x", v);
                 }}
               />
@@ -159,15 +168,17 @@ export function ImageControl() {
             <div className="space-y-1">
               <div className="flex justify-between">
                 <Label className="text-xs">Y Position</Label>
-                <span className="text-xs text-muted-foreground">{Math.round(selectedImage.y)}px</span>
+                <span className="text-xs text-muted-foreground">
+                  {Math.round(selectedImage.y)}px
+                </span>
               </div>
               <Slider
                 min={-500}
                 max={2000}
                 step={1}
                 value={[selectedImage.y]}
-                onValueChange={(val: any) => {
-                  const v = Array.isArray(val) ? val[0] : (typeof val === 'number' ? val : val[0]);
+                onValueChange={(val: number[]) => {
+                  const v = Array.isArray(val) ? val[0] : typeof val === "number" ? val : val[0];
                   if (v !== undefined) updateProp("y", v);
                 }}
               />
@@ -183,8 +194,8 @@ export function ImageControl() {
                 max={360}
                 step={1}
                 value={[selectedImage.rotation]}
-                onValueChange={(val: any) => {
-                  const v = Array.isArray(val) ? val[0] : (typeof val === 'number' ? val : val[0]);
+                onValueChange={(val: number[]) => {
+                  const v = Array.isArray(val) ? val[0] : typeof val === "number" ? val : val[0];
                   if (v !== undefined) updateProp("rotation", v);
                 }}
               />
@@ -193,15 +204,17 @@ export function ImageControl() {
             <div className="space-y-1">
               <div className="flex justify-between">
                 <Label className="text-xs">Border Radius</Label>
-                <span className="text-xs text-muted-foreground">{selectedImage.borderRadius}px</span>
+                <span className="text-xs text-muted-foreground">
+                  {selectedImage.borderRadius}px
+                </span>
               </div>
               <Slider
                 min={0}
                 max={Math.min(selectedImage.width, selectedImage.height) / 2}
                 step={1}
                 value={[selectedImage.borderRadius]}
-                onValueChange={(val: any) => {
-                  const v = Array.isArray(val) ? val[0] : (typeof val === 'number' ? val : val[0]);
+                onValueChange={(val: number[]) => {
+                  const v = Array.isArray(val) ? val[0] : typeof val === "number" ? val : val[0];
                   if (v !== undefined) updateProp("borderRadius", v);
                 }}
               />
@@ -210,15 +223,17 @@ export function ImageControl() {
             <div className="space-y-1">
               <div className="flex justify-between">
                 <Label className="text-xs">Opacity</Label>
-                <span className="text-xs text-muted-foreground">{Math.round(selectedImage.opacity * 100)}%</span>
+                <span className="text-xs text-muted-foreground">
+                  {Math.round(selectedImage.opacity * 100)}%
+                </span>
               </div>
               <Slider
                 min={0.1}
                 max={1}
                 step={0.05}
                 value={[selectedImage.opacity]}
-                onValueChange={(val: any) => {
-                  const v = Array.isArray(val) ? val[0] : (typeof val === 'number' ? val : val[0]);
+                onValueChange={(val: number[]) => {
+                  const v = Array.isArray(val) ? val[0] : typeof val === "number" ? val : val[0];
                   if (v !== undefined) updateProp("opacity", v);
                 }}
               />

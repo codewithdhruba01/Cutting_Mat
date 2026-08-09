@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { AppSettings, defaultSettings } from '@/types';
-import { MatImage } from '@/contexts/images-context';
+import { create } from "zustand";
+import { AppSettings, defaultSettings } from "@/types";
+import { MatImage } from "@/contexts/images-context";
 
 export interface WorkspaceStateSnapshot {
   settings: AppSettings;
@@ -10,12 +10,14 @@ export interface WorkspaceStateSnapshot {
 export interface WorkspaceStore {
   // Settings
   settings: AppSettings;
-  updateSettings: (newSettings: Partial<AppSettings> | ((prev: AppSettings) => AppSettings)) => void;
+  updateSettings: (
+    newSettings: Partial<AppSettings> | ((prev: AppSettings) => AppSettings)
+  ) => void;
   resetSettings: () => void;
   importSettings: (json: string) => void;
   isLoaded: boolean;
   setIsLoaded: (loaded: boolean) => void;
-  
+
   // Images
   images: MatImage[];
   selectedImageId: string | null;
@@ -32,7 +34,7 @@ export interface WorkspaceStore {
   redo: () => void;
   canUndo: boolean;
   canRedo: boolean;
-  
+
   // Helpers
   pushToHistory: () => void;
   debouncedHistoryPush: () => void;
@@ -58,7 +60,7 @@ export const useWorkspaceStore = create<WorkspaceStore>((set, get) => ({
       past: [...past, { settings, images }],
       future: [],
       canUndo: true,
-      canRedo: false
+      canRedo: false,
     });
   },
 
@@ -76,7 +78,8 @@ export const useWorkspaceStore = create<WorkspaceStore>((set, get) => ({
   updateSettings: (update) => {
     get().debouncedHistoryPush();
     set((state) => {
-      const newSettings = typeof update === 'function' ? update(state.settings) : { ...state.settings, ...update };
+      const newSettings =
+        typeof update === "function" ? update(state.settings) : { ...state.settings, ...update };
       if (state.isLoaded) {
         localStorage.setItem("cutting-mat-settings", JSON.stringify(newSettings));
       }
@@ -115,14 +118,14 @@ export const useWorkspaceStore = create<WorkspaceStore>((set, get) => ({
     const newId = crypto.randomUUID();
     set((state) => ({
       images: [...state.images, { ...image, id: newId }],
-      selectedImageId: newId
+      selectedImageId: newId,
     }));
   },
 
   updateImage: (id, update) => {
     get().debouncedHistoryPush();
     set((state) => ({
-      images: state.images.map((img) => (img.id === id ? { ...img, ...update } : img))
+      images: state.images.map((img) => (img.id === id ? { ...img, ...update } : img)),
     }));
   },
 
@@ -136,7 +139,7 @@ export const useWorkspaceStore = create<WorkspaceStore>((set, get) => ({
       }
       return {
         images: filtered,
-        selectedImageId: state.selectedImageId === id ? null : state.selectedImageId
+        selectedImageId: state.selectedImageId === id ? null : state.selectedImageId,
       };
     });
   },
@@ -151,7 +154,7 @@ export const useWorkspaceStore = create<WorkspaceStore>((set, get) => ({
       });
       return {
         images: [],
-        selectedImageId: null
+        selectedImageId: null,
       };
     });
   },
@@ -176,7 +179,7 @@ export const useWorkspaceStore = create<WorkspaceStore>((set, get) => ({
       settings: previousState.settings,
       images: previousState.images,
       canUndo: newPast.length > 0,
-      canRedo: true
+      canRedo: true,
     });
   },
 
@@ -198,7 +201,7 @@ export const useWorkspaceStore = create<WorkspaceStore>((set, get) => ({
       settings: nextState.settings,
       images: nextState.images,
       canUndo: true,
-      canRedo: newFuture.length > 0
+      canRedo: newFuture.length > 0,
     });
-  }
+  },
 }));

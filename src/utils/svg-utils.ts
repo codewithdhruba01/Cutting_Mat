@@ -4,11 +4,11 @@ export const DPI = 96;
 
 export function unitToPixels(value: number, unit: Unit): number {
   switch (unit) {
-    case 'inch':
+    case "inch":
       return value * DPI;
-    case 'cm':
+    case "cm":
       return (value * DPI) / 2.54;
-    case 'mm':
+    case "mm":
       return (value * DPI) / 25.4;
     default:
       return value;
@@ -17,11 +17,11 @@ export function unitToPixels(value: number, unit: Unit): number {
 
 export function pixelsToUnit(value: number, unit: Unit): number {
   switch (unit) {
-    case 'inch':
+    case "inch":
       return value / DPI;
-    case 'cm':
+    case "cm":
       return (value * 2.54) / DPI;
-    case 'mm':
+    case "mm":
       return (value * 25.4) / DPI;
     default:
       return value;
@@ -30,5 +30,5 @@ export function pixelsToUnit(value: number, unit: Unit): number {
 
 export function formatUnit(value: number): string {
   // Round to 2 decimal places if needed
-  return Math.round(value * 100) / 100 + '';
+  return Math.round(value * 100) / 100 + "";
 }

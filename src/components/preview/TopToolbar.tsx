@@ -44,7 +44,17 @@ export function TopToolbar() {
       const x = (matWidthPx - width) / 2;
       const y = (matHeightPx - height) / 2;
 
-      addImage({ url, name: file.name, x, y, width, height, rotation: 0, borderRadius: 0, opacity: 1 });
+      addImage({
+        url,
+        name: file.name,
+        x,
+        y,
+        width,
+        height,
+        rotation: 0,
+        borderRadius: 0,
+        opacity: 1,
+      });
     };
     img.src = url;
 
@@ -55,40 +65,86 @@ export function TopToolbar() {
 
   return (
     <div className="absolute top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 bg-[#1c1c1c] p-1.5 rounded-full border border-border/10 shadow-xl backdrop-blur-md">
-      <input type="file" accept="image/png, image/jpeg, image/svg+xml" className="hidden" ref={fileInputRef} onChange={handleFileChange} />
-      
+      <input
+        type="file"
+        accept="image/png, image/jpeg, image/svg+xml"
+        className="hidden"
+        ref={fileInputRef}
+        onChange={handleFileChange}
+      />
+
       {/* Undo/Redo */}
-      <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-white" disabled={!canUndo} onClick={undo} title="Undo">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="rounded-full text-muted-foreground hover:text-white"
+        disabled={!canUndo}
+        onClick={undo}
+        title="Undo"
+      >
         <Undo2 className="w-4.5 h-4.5" />
       </Button>
-      <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-white" disabled={!canRedo} onClick={redo} title="Redo">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="rounded-full text-muted-foreground hover:text-white"
+        disabled={!canRedo}
+        onClick={redo}
+        title="Redo"
+      >
         <Redo2 className="w-4.5 h-4.5" />
       </Button>
 
       <div className="w-px h-6 bg-border/20 mx-1" />
 
       {/* Add Image */}
-      <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-white" onClick={() => fileInputRef.current?.click()} title="Add Image">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="rounded-full text-muted-foreground hover:text-white"
+        onClick={() => fileInputRef.current?.click()}
+        title="Add Image"
+      >
         <ImagePlus className="w-4.5 h-4.5" />
       </Button>
 
       {/* Start Over */}
-      <Button onClick={handleStartOver} className="rounded-full px-5 h-9 bg-[#2c2c2c] hover:bg-[#3c3c3c] text-white font-medium mx-1" variant="secondary">
+      <Button
+        onClick={handleStartOver}
+        className="rounded-full px-5 h-9 bg-[#2c2c2c] hover:bg-[#3c3c3c] text-white font-medium mx-1"
+        variant="secondary"
+      >
         Start Over
       </Button>
 
       <div className="w-px h-6 bg-border/20 mx-1" />
 
       {/* Fullscreen */}
-      <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-white" onClick={handleFullscreen} title="Full Screen">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="rounded-full text-muted-foreground hover:text-white"
+        onClick={handleFullscreen}
+        title="Full Screen"
+      >
         <Maximize2 className="w-4.5 h-4.5" />
       </Button>
-      
+
       {/* Visual Placeholders from Reference */}
-      <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-white" title="Feedback (Coming Soon)">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="rounded-full text-muted-foreground hover:text-white"
+        title="Feedback (Coming Soon)"
+      >
         <MessageSquareWarning className="w-4.5 h-4.5" />
       </Button>
-      <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-white" title="History (Coming Soon)">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="rounded-full text-muted-foreground hover:text-white"
+        title="History (Coming Soon)"
+      >
         <Clock className="w-4.5 h-4.5" />
       </Button>
     </div>

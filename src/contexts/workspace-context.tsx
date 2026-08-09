@@ -6,7 +6,6 @@ import { defaultSettings } from "@/types";
 
 export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
   const setIsLoaded = useWorkspaceStore((state) => state.setIsLoaded);
-  const updateSettings = useWorkspaceStore((state) => state.updateSettings);
 
   // Load from LocalStorage on mount (only once)
   useEffect(() => {

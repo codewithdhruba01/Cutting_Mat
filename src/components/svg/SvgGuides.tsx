@@ -24,12 +24,12 @@ export function SvgGuides({ settings, widthPx, heightPx }: Props) {
     radiusGuides.radii.forEach((radiusValue) => {
       const r = unitToPixels(radiusValue, unit);
       if (r <= 0) return;
-      
+
       // Draw arc from right (x-axis) to top (y-axis)
       // Start point: (r, cy)
       // End point: (0, cy - r)
       const pathData = `M ${r} ${cy} A ${r} ${r} 0 0 0 0 ${cy - r}`;
-      
+
       elements.push(
         <path
           key={`rad-${radiusValue}`}
@@ -66,12 +66,12 @@ export function SvgGuides({ settings, widthPx, heightPx }: Props) {
       );
 
       if (angleGuides.labels) {
-        const labelR = r10; 
+        const labelR = r10;
         const labelX = cx + labelR * Math.cos(rad);
         const labelY = cy - labelR * Math.sin(rad);
         const offsetX = 10 * Math.cos(rad);
         const offsetY = -10 * Math.sin(rad);
-        
+
         elements.push(
           <text
             key={`ang-lbl-${angle}`}
@@ -140,8 +140,22 @@ export function SvgGuides({ settings, widthPx, heightPx }: Props) {
   if (crosshair.enabled) {
     elements.push(
       <g key="crosshair" opacity={crosshair.opacity}>
-        <line x1={0} y1={cy} x2={widthPx} y2={cy} stroke={grid.color} strokeWidth={grid.majorThickness} />
-        <line x1={cx} y1={0} x2={cx} y2={heightPx} stroke={grid.color} strokeWidth={grid.majorThickness} />
+        <line
+          x1={0}
+          y1={cy}
+          x2={widthPx}
+          y2={cy}
+          stroke={grid.color}
+          strokeWidth={grid.majorThickness}
+        />
+        <line
+          x1={cx}
+          y1={0}
+          x2={cx}
+          y2={heightPx}
+          stroke={grid.color}
+          strokeWidth={grid.majorThickness}
+        />
       </g>
     );
   }

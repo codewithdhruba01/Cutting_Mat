@@ -14,35 +14,48 @@ export function SvgTicks({ settings, widthPx, heightPx }: Props) {
   // Use minor size from grid for tick intervals
   const minorPx = unitToPixels(settings.grid.minorSize, unit);
   const majorPx = unitToPixels(settings.grid.majorSize, unit);
-  
-  const tickLen = unitToPixels(settings.edgeTicks.length, 'mm');
+
+  const tickLen = unitToPixels(settings.edgeTicks.length, "mm");
 
   let path = "";
 
-  const addTick = (x: number, y: number, isVertical: boolean, position: 'Outside' | 'Inside' | 'Both', isMajor: boolean) => {
-    let x1 = x, y1 = y, x2 = x, y2 = y;
-    
+  const addTick = (
+    x: number,
+    y: number,
+    isVertical: boolean,
+    position: "Outside" | "Inside" | "Both",
+    isMajor: boolean
+  ) => {
+    let x1 = x,
+      y1 = y,
+      x2 = x,
+      y2 = y;
+
     // Major ticks are twice as long
     const currentTickLen = isMajor ? tickLen * 2 : tickLen;
-    
+
     if (isVertical) {
-      if (y === 0) { // Top edge
-        if (position === 'Inside' || position === 'Both') y2 += currentTickLen;
-        if (position === 'Outside' || position === 'Both') y1 -= currentTickLen;
-      } else { // Bottom edge
-        if (position === 'Inside' || position === 'Both') y1 -= currentTickLen;
-        if (position === 'Outside' || position === 'Both') y2 += currentTickLen;
+      if (y === 0) {
+        // Top edge
+        if (position === "Inside" || position === "Both") y2 += currentTickLen;
+        if (position === "Outside" || position === "Both") y1 -= currentTickLen;
+      } else {
+        // Bottom edge
+        if (position === "Inside" || position === "Both") y1 -= currentTickLen;
+        if (position === "Outside" || position === "Both") y2 += currentTickLen;
       }
     } else {
-      if (x === 0) { // Left edge
-        if (position === 'Inside' || position === 'Both') x2 += currentTickLen;
-        if (position === 'Outside' || position === 'Both') x1 -= currentTickLen;
-      } else { // Right edge
-        if (position === 'Inside' || position === 'Both') x1 -= currentTickLen;
-        if (position === 'Outside' || position === 'Both') x2 += currentTickLen;
+      if (x === 0) {
+        // Left edge
+        if (position === "Inside" || position === "Both") x2 += currentTickLen;
+        if (position === "Outside" || position === "Both") x1 -= currentTickLen;
+      } else {
+        // Right edge
+        if (position === "Inside" || position === "Both") x1 -= currentTickLen;
+        if (position === "Outside" || position === "Both") x2 += currentTickLen;
       }
     }
-    
+
     path += `M ${x1} ${y1} L ${x2} ${y2} `;
   };
 

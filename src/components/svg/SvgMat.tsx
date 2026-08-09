@@ -18,8 +18,8 @@ export function SvgMat() {
 
   // Determine background fill
   let bgFill = settings.surfaceColors.custom;
-  if (settings.background.type === 'Transparent') bgFill = 'transparent';
-  if (settings.background.type === 'Gradient') {
+  if (settings.background.type === "Transparent") bgFill = "transparent";
+  if (settings.background.type === "Gradient") {
     bgFill = "url(#mat-gradient)";
   }
 
@@ -36,14 +36,14 @@ export function SvgMat() {
       height="100%"
       style={{
         borderRadius: roundedCorners,
-        backgroundColor: bgFill === 'transparent' ? 'white' : 'transparent', // For transparent preview visibility
+        backgroundColor: bgFill === "transparent" ? "white" : "transparent", // For transparent preview visibility
       }}
     >
       <defs>
         <clipPath id="inner-mat-clip">
           <rect x={0} y={0} width={widthPx} height={heightPx} />
         </clipPath>
-        {settings.background.type === 'Gradient' && (
+        {settings.background.type === "Gradient" && (
           <linearGradient id="mat-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor={settings.background.color1} />
             <stop offset="100%" stopColor={settings.background.color2} />
@@ -80,7 +80,7 @@ export function SvgMat() {
           <SvgGuides settings={settings} widthPx={widthPx} heightPx={heightPx} />
           <SvgImages />
         </g>
-        
+
         {/* Draw numbers outside clip so they can overhang if needed, though they shouldn't with margin */}
         <SvgNumbers settings={settings} widthPx={widthPx} heightPx={heightPx} />
       </g>
