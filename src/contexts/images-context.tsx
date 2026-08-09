@@ -1,6 +1,7 @@
 "use client";
 
-import { useWorkspace } from "./workspace-context";
+import { useWorkspaceStore } from "@/store/workspace-store";
+import { useShallow } from "zustand/react/shallow";
 
 export interface MatImage {
   id: string;
@@ -16,15 +17,15 @@ export interface MatImage {
 }
 
 export function useImages() {
-  const workspace = useWorkspace();
-  
-  return {
-    images: workspace.images,
-    selectedImageId: workspace.selectedImageId,
-    addImage: workspace.addImage,
-    updateImage: workspace.updateImage,
-    removeImage: workspace.removeImage,
-    clearImages: workspace.clearImages,
-    setSelectedImageId: workspace.setSelectedImageId,
-  };
+  return useWorkspaceStore(
+    useShallow((state) => ({
+      images: state.images,
+      selectedImageId: state.selectedImageId,
+      addImage: state.addImage,
+      updateImage: state.updateImage,
+      removeImage: state.removeImage,
+      clearImages: state.clearImages,
+      setSelectedImageId: state.setSelectedImageId,
+    }))
+  );
 }

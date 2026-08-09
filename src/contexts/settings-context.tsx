@@ -1,20 +1,20 @@
 "use client";
 
-import { useWorkspace } from "./workspace-context";
+import { useWorkspaceStore } from "@/store/workspace-store";
+import { useShallow } from "zustand/react/shallow";
 
-// We simply re-export the hook mapped to WorkspaceContext to avoid changing any consumer imports!
 export function useSettings() {
-  const workspace = useWorkspace();
-  
-  return {
-    settings: workspace.settings,
-    updateSettings: workspace.updateSettings,
-    resetSettings: workspace.resetSettings,
-    importSettings: workspace.importSettings,
-    undo: workspace.undo,
-    redo: workspace.redo,
-    canUndo: workspace.canUndo,
-    canRedo: workspace.canRedo,
-    isLoaded: workspace.isLoaded,
-  };
+  return useWorkspaceStore(
+    useShallow((state) => ({
+      settings: state.settings,
+      updateSettings: state.updateSettings,
+      resetSettings: state.resetSettings,
+      importSettings: state.importSettings,
+      undo: state.undo,
+      redo: state.redo,
+      canUndo: state.canUndo,
+      canRedo: state.canRedo,
+      isLoaded: state.isLoaded,
+    }))
+  );
 }
