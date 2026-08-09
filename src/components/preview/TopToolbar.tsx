@@ -64,7 +64,7 @@ export function TopToolbar() {
   };
 
   return (
-    <div className="absolute top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 bg-[#1c1c1c] p-1.5 rounded-full border border-border/10 shadow-xl backdrop-blur-md">
+    <div className="absolute top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-0.5 sm:gap-1 bg-[#1c1c1c] p-1 sm:p-1.5 rounded-full border border-border/10 shadow-xl backdrop-blur-md w-[95%] sm:w-auto justify-center max-w-fit">
       <input
         type="file"
         accept="image/png, image/jpeg, image/svg+xml"
@@ -77,59 +77,59 @@ export function TopToolbar() {
       <Button
         variant="ghost"
         size="icon"
-        className="rounded-full text-muted-foreground hover:text-white"
+        className="rounded-full text-muted-foreground hover:text-white h-8 w-8 sm:h-10 sm:w-10 shrink-0"
         disabled={!canUndo}
         onClick={undo}
         title="Undo"
       >
-        <Undo2 className="w-4.5 h-4.5" />
+        <Undo2 className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
       </Button>
 
-      <div className="w-px h-6 bg-border/20 mx-1" />
+      <div className="w-px h-5 sm:h-6 bg-border/20 mx-0.5 sm:mx-1 shrink-0" />
 
       {/* Add Image */}
       <Button
         variant="ghost"
         size="icon"
-        className="rounded-full text-muted-foreground hover:text-white"
+        className="rounded-full text-muted-foreground hover:text-white h-8 w-8 sm:h-10 sm:w-10 shrink-0"
         onClick={() => fileInputRef.current?.click()}
         title="Add Image"
       >
-        <ImagePlus className="w-4.5 h-4.5" />
+        <ImagePlus className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
       </Button>
 
       {/* Start Over */}
       <Button
         onClick={handleStartOver}
-        className="rounded-full px-5 h-9 bg-[#2c2c2c] hover:bg-[#3c3c3c] text-white font-medium mx-1"
+        className="rounded-full px-3 sm:px-5 h-8 sm:h-9 bg-[#2c2c2c] hover:bg-[#3c3c3c] text-white font-medium mx-0.5 sm:mx-1 text-xs sm:text-sm shrink-0 whitespace-nowrap"
         variant="secondary"
       >
         Start Over
       </Button>
 
-      <div className="w-px h-6 bg-border/20 mx-1" />
+      <div className="w-px h-5 sm:h-6 bg-border/20 mx-0.5 sm:mx-1 shrink-0" />
 
       {/* Fullscreen */}
       <Button
         variant="ghost"
         size="icon"
-        className="rounded-full text-muted-foreground hover:text-white"
+        className="rounded-full text-muted-foreground hover:text-white h-8 w-8 sm:h-10 sm:w-10 shrink-0"
         onClick={handleFullscreen}
         title="Full Screen"
       >
-        <Maximize2 className="w-4.5 h-4.5" />
+        <Maximize2 className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
       </Button>
 
       {/* Redo */}
       <Button
         variant="ghost"
         size="icon"
-        className="rounded-full text-muted-foreground hover:text-white"
+        className="rounded-full text-muted-foreground hover:text-white h-8 w-8 sm:h-10 sm:w-10 shrink-0"
         disabled={!canRedo}
         onClick={redo}
         title="Redo"
       >
-        <Redo2 className="w-4.5 h-4.5" />
+        <Redo2 className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
       </Button>
     </div>
   );
