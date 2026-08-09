@@ -36,7 +36,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://svg-cutting-mat.vercel.app"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://cuttingmatbggenaretor.vercel.app"),
   title: {
     default: "Cutting Mat Background Generator",
     template: "%s | SVG Cutting Mat Generator",
