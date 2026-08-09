@@ -2,7 +2,7 @@
 
 import { useSettings, useImages } from "@/contexts";
 import { Button } from "@/components/ui/button";
-import { Undo2, Redo2, ImagePlus, Maximize2, MessageSquareWarning, Clock } from "lucide-react";
+import { Undo2, Redo2, ImagePlus, Maximize2 } from "lucide-react";
 import { useRef } from "react";
 import { unitToPixels } from "@/utils/svg-utils";
 
@@ -73,7 +73,7 @@ export function TopToolbar() {
         onChange={handleFileChange}
       />
 
-      {/* Undo/Redo */}
+      {/* Undo */}
       <Button
         variant="ghost"
         size="icon"
@@ -83,16 +83,6 @@ export function TopToolbar() {
         title="Undo"
       >
         <Undo2 className="w-4.5 h-4.5" />
-      </Button>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="rounded-full text-muted-foreground hover:text-white"
-        disabled={!canRedo}
-        onClick={redo}
-        title="Redo"
-      >
-        <Redo2 className="w-4.5 h-4.5" />
       </Button>
 
       <div className="w-px h-6 bg-border/20 mx-1" />
@@ -130,22 +120,16 @@ export function TopToolbar() {
         <Maximize2 className="w-4.5 h-4.5" />
       </Button>
 
-      {/* Visual Placeholders from Reference */}
+      {/* Redo */}
       <Button
         variant="ghost"
         size="icon"
         className="rounded-full text-muted-foreground hover:text-white"
-        title="Feedback (Coming Soon)"
+        disabled={!canRedo}
+        onClick={redo}
+        title="Redo"
       >
-        <MessageSquareWarning className="w-4.5 h-4.5" />
-      </Button>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="rounded-full text-muted-foreground hover:text-white"
-        title="History (Coming Soon)"
-      >
-        <Clock className="w-4.5 h-4.5" />
+        <Redo2 className="w-4.5 h-4.5" />
       </Button>
     </div>
   );
