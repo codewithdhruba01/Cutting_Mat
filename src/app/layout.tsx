@@ -52,12 +52,21 @@ export const metadata: Metadata = {
     title: "Professional SVG Cutting Mat Background Generator",
     description: "A premium design tool to generate highly customizable SVG cutting mat backgrounds. Create pixel-perfect grid mats, adjust colors, and export precision SVGs.",
     siteName: "SVG Cutting Mat Generator",
+    images: [
+      {
+        url: "/Assets/og.png",
+        width: 1916,
+        height: 1192,
+        alt: "SVG Cutting Mat Generator Preview",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Professional SVG Cutting Mat Background Generator",
     description: "A premium design tool to generate highly customizable SVG cutting mat backgrounds.",
     creator: "@codewithdhruba",
+    images: ["/Assets/og.png"],
   },
   robots: {
     index: true,
