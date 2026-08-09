@@ -22,10 +22,12 @@ This project is built with modern, performant web technologies:
 
 * **Framework**: [Next.js](https://nextjs.org/) (App Router)
 * **Language**: [TypeScript](https://www.typescriptlang.org/)
+* **State Management**: [Zustand](https://zustand-demo.pmnd.rs/) (Fast, scalable state & history management)
 * **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 * **UI Components**: [Shadcn UI](https://ui.shadcn.com/) & Radix UI
 * **Icons**: [Lucide React](https://lucide.dev/)
 * **Theme Management**: `next-themes`
+* **Code Quality & CI**: ESLint, Prettier, Husky (Git hooks), and GitHub Actions
 
 ## Getting Started
 
@@ -39,33 +41,38 @@ Make sure you have Node.js installed (v18 or higher recommended).
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/codewithdhruba01/Cutting_Mat.git
-   cd cutting-mat
+   cd Cutting_Mat
    ```
 
 2. **Install dependencies:**
    ```bash
    npm install
-   # or yarn install
-   # or pnpm install
    ```
 
 3. **Start the development server:**
    ```bash
    npm run dev
-   # or yarn dev
-   # or pnpm dev
    ```
 
 4. **Open your browser:**
    Navigate to [http://localhost:3000](http://localhost:3000) to see the application running.
 
+## Code Quality & CI/CD
+
+This project enforces strict code quality and formatting standard.
+* **Linting & Formatting**: Run `npm run lint` and `npm run format` locally to check for issues.
+* **Pre-commit Hooks**: [Husky](https://typicode.github.io/husky/) ensures that all commits automatically run ESLint and Prettier checks before pushing code.
+* **Continuous Integration**: A GitHub Actions workflow automatically builds the project and tests for linting/formatting errors on every `push` and `pull_request` to the `main` branch.
+
 ##  Project Structure highlights
 
 * `src/app/`: Next.js App Router pages and root layouts.
 * `src/components/`: Reusable UI components (Sidebar, TopToolbar, PreviewArea).
-* `src/contexts/`: Global state management (`WorkspaceContext` for undo/redo, `ThemeContext`).
+* `src/store/`: Centralized state management using Zustand (`workspace-store.ts`).
+* `src/contexts/`: Backward-compatible context hooks for Theme and settings selectors.
 * `src/utils/`: Math and conversion utilities for generating pixel-perfect SVGs.
 * `src/types/`: Centralized TypeScript definitions.
+* `.github/workflows/`: CI/CD pipelines.
 
 ## 🤝 Contributing
 
