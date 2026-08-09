@@ -137,7 +137,7 @@ export function ImageControl() {
                 max={2000}
                 step={1}
                 value={[selectedImage.width]}
-                onValueChange={(val: number[]) => {
+                onValueChange={(val: number | readonly number[]) => {
                   const newW = Array.isArray(val) ? val[0] : typeof val === "number" ? val : val[0];
                   if (newW === undefined) return;
                   const aspect = selectedImage.width / selectedImage.height;
@@ -158,7 +158,7 @@ export function ImageControl() {
                 max={2000}
                 step={1}
                 value={[selectedImage.x]}
-                onValueChange={(val: number[]) => {
+                onValueChange={(val: number | readonly number[]) => {
                   const v = Array.isArray(val) ? val[0] : typeof val === "number" ? val : val[0];
                   if (v !== undefined) updateProp("x", v);
                 }}
@@ -177,7 +177,7 @@ export function ImageControl() {
                 max={2000}
                 step={1}
                 value={[selectedImage.y]}
-                onValueChange={(val: number[]) => {
+                onValueChange={(val: number | readonly number[]) => {
                   const v = Array.isArray(val) ? val[0] : typeof val === "number" ? val : val[0];
                   if (v !== undefined) updateProp("y", v);
                 }}
@@ -194,7 +194,7 @@ export function ImageControl() {
                 max={360}
                 step={1}
                 value={[selectedImage.rotation]}
-                onValueChange={(val: number[]) => {
+                onValueChange={(val: number | readonly number[]) => {
                   const v = Array.isArray(val) ? val[0] : typeof val === "number" ? val : val[0];
                   if (v !== undefined) updateProp("rotation", v);
                 }}
@@ -213,7 +213,7 @@ export function ImageControl() {
                 max={Math.min(selectedImage.width, selectedImage.height) / 2}
                 step={1}
                 value={[selectedImage.borderRadius]}
-                onValueChange={(val: number[]) => {
+                onValueChange={(val: number | readonly number[]) => {
                   const v = Array.isArray(val) ? val[0] : typeof val === "number" ? val : val[0];
                   if (v !== undefined) updateProp("borderRadius", v);
                 }}
@@ -232,7 +232,7 @@ export function ImageControl() {
                 max={1}
                 step={0.05}
                 value={[selectedImage.opacity]}
-                onValueChange={(val: number[]) => {
+                onValueChange={(val: number | readonly number[]) => {
                   const v = Array.isArray(val) ? val[0] : typeof val === "number" ? val : val[0];
                   if (v !== undefined) updateProp("opacity", v);
                 }}
