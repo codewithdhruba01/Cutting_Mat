@@ -14,7 +14,16 @@ export function SvgMat() {
   const widthPx = unitToPixels(width, unit);
   const heightPx = unitToPixels(height, unit);
 
-  const { padding, roundedCorners, thickness } = settings.border;
+  let { padding } = settings.border;
+  const { roundedCorners, thickness } = settings.border;
+
+  // Make sure padding is large enough to fit the numbers
+  if (settings.numericGuides.enabled) {
+    const requiredPadding = settings.numericGuides.fontSize * 2.5 + 25;
+    if (padding < requiredPadding) {
+      padding = requiredPadding;
+    }
+  }
 
   // Determine background fill
   let bgFill = settings.surfaceColors.custom;

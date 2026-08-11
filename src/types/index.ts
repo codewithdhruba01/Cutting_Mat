@@ -129,7 +129,7 @@ export const defaultSettings: AppSettings = {
     bottom: true,
     left: true,
     right: true,
-    fontSize: 12,
+    fontSize: 16,
     fontFamily: "var(--font-geist-mono)",
     fontWeight: "400",
     fontColor: "#b8d04d",

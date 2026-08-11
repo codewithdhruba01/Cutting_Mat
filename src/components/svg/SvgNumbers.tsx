@@ -23,7 +23,7 @@ export function SvgNumbers({ settings, widthPx, heightPx }: Props) {
     baseline: "middle";
   }[] = [];
 
-  const margin = 10; // offset from the edge
+  const margin = Math.max(15, fontSize * 1.2); // offset from the edge
 
   // Horizontal labels (Top and Bottom)
   for (let x = 0; x <= widthPx; x += majorPx) {
@@ -79,7 +79,7 @@ export function SvgNumbers({ settings, widthPx, heightPx }: Props) {
   }
 
   return (
-    <g fill={fontColor} fontFamily={fontFamily} fontSize={fontSize} fontWeight={fontWeight}>
+    <g fill={fontColor} fontFamily={fontFamily} fontSize={fontSize * 1.5} fontWeight={fontWeight}>
       {labels.map((lbl, idx) => (
         <text
           key={idx}
