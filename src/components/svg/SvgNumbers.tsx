@@ -23,7 +23,7 @@ export function SvgNumbers({ settings, widthPx, heightPx }: Props) {
     baseline: "middle";
   }[] = [];
 
-  const margin = Math.max(15, fontSize * 1.2); // offset from the edge
+  const margin = Math.max(25, fontSize * 1.8); // offset from the edge
 
   // Horizontal labels (Top and Bottom)
   for (let x = 0; x <= widthPx; x += majorPx) {
