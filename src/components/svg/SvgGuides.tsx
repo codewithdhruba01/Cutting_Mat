@@ -78,7 +78,7 @@ export function SvgGuides({ settings, widthPx, heightPx }: Props) {
             x={labelX + offsetX}
             y={labelY + offsetY}
             fill={settings.numericGuides.fontColor}
-            fontSize={9}
+            fontSize={18}
             fontFamily="var(--font-geist-mono), monospace"
             textAnchor="middle"
             alignmentBaseline="middle"
