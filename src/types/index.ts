@@ -117,7 +117,7 @@ export const defaultSettings: AppSettings = {
     enabled: true,
     majorSize: 5,
     minorSize: 1,
-    opacity: 0.8,
+    opacity: 1,
     color: "#b8d04d",
     majorThickness: 1.5,
     minorThickness: 0.5,
@@ -138,7 +138,7 @@ export const defaultSettings: AppSettings = {
   angleGuides: { enabled: true, interval: 15, labels: true, dashed: true },
   tickMarks: { enabled: false, length: 10, thickness: 1, opacity: 0.5 },
   diagonalGuides: { enabled: true, show45: false, show60: false },
-  crosshair: { enabled: false, opacity: 0.3 },
+  crosshair: { enabled: false, opacity: 0.8 },
   border: { thickness: 2, roundedCorners: 12, padding: 20, innerMargin: 10, outerMargin: 10 },
   advanced: {
     snap: false,

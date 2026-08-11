@@ -35,7 +35,7 @@ export function SvgGuides({ settings, widthPx, heightPx }: Props) {
           key={`rad-${radiusValue}`}
           d={pathData}
           stroke={grid.color}
-          strokeWidth={grid.minorThickness}
+          strokeWidth={Math.max(grid.minorThickness * 1.5, 1)}
           fill="none"
         />
       );
@@ -60,7 +60,7 @@ export function SvgGuides({ settings, widthPx, heightPx }: Props) {
           x2={cx + dx}
           y2={cy - dy}
           stroke={grid.color}
-          strokeWidth={grid.minorThickness}
+          strokeWidth={Math.max(grid.minorThickness * 1.5, 1)}
           strokeDasharray={angleGuides.dashed ? "6,6" : "none"}
         />
       );
@@ -104,7 +104,7 @@ export function SvgGuides({ settings, widthPx, heightPx }: Props) {
         x2={cm50}
         y2={heightPx - cm35}
         stroke={grid.color}
-        strokeWidth={grid.minorThickness}
+        strokeWidth={Math.max(grid.minorThickness * 1.5, 1)}
         strokeDasharray="6,6"
       />
     );
@@ -117,7 +117,7 @@ export function SvgGuides({ settings, widthPx, heightPx }: Props) {
         x2={cm35}
         y2={cm35}
         stroke={grid.color}
-        strokeWidth={grid.minorThickness}
+        strokeWidth={Math.max(grid.minorThickness * 1.5, 1)}
         strokeDasharray="6,6"
       />
     );
@@ -130,7 +130,7 @@ export function SvgGuides({ settings, widthPx, heightPx }: Props) {
         x2={cm50}
         y2={cm35}
         stroke={grid.color}
-        strokeWidth={grid.minorThickness}
+        strokeWidth={Math.max(grid.minorThickness * 1.5, 1)}
         strokeDasharray="6,6"
       />
     );
