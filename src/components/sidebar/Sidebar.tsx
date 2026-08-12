@@ -10,6 +10,7 @@ import { EdgeTicksControl, NumericGuidesControl, AdditionalGuidesControl } from 
 import { ImageControl } from "./ImageControl";
 import { ExportControl } from "./ExportControl";
 import { cn } from "@/lib/utils";
+import { AppModeToggle } from "@/components/ui/app-mode-toggle";
 
 function Card({
   title,
@@ -40,7 +41,8 @@ export function SidebarHeader({ hideThemeToggle }: { hideThemeToggle?: boolean }
 
   return (
     <div className="flex justify-between items-start">
-      <div>
+      <div className="w-full">
+        <AppModeToggle />
         <h1 className="text-lg font-bold font-mono tracking-tight text-white bg-[#0f3b2e] inline-block px-1 mb-2">
           Cutting mat bg generator
         </h1>
