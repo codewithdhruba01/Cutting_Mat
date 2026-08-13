@@ -33,7 +33,9 @@ export function AppModeToggle() {
             }}
             className={cn(
               "relative flex-1 py-1.5 text-sm font-semibold transition-colors duration-200 z-10 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
-              isActive ? "text-foreground drop-shadow-sm" : "text-muted-foreground hover:text-foreground"
+              isActive
+                ? "text-foreground drop-shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
             )}
           >
             <span className="relative z-20 pointer-events-none">{option.label}</span>
