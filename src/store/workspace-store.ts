@@ -8,6 +8,10 @@ export interface WorkspaceStateSnapshot {
 }
 
 export interface WorkspaceStore {
+  // App Mode
+  appMode: "cutting-mat" | "template";
+  setAppMode: (mode: "cutting-mat" | "template") => void;
+
   // Settings
   settings: AppSettings;
   updateSettings: (
@@ -43,6 +47,9 @@ export interface WorkspaceStore {
 let timeoutId: NodeJS.Timeout | null = null;
 
 export const useWorkspaceStore = create<WorkspaceStore>((set, get) => ({
+  appMode: "cutting-mat",
+  setAppMode: (mode) => set({ appMode: mode }),
+
   settings: defaultSettings,
   images: [],
   selectedImageId: null,

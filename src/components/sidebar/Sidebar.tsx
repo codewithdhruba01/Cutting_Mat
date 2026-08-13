@@ -11,6 +11,8 @@ import { ImageControl } from "./ImageControl";
 import { ExportControl } from "./ExportControl";
 import { cn } from "@/lib/utils";
 import { AppModeToggle } from "@/components/ui/app-mode-toggle";
+import { TemplateContent } from "./TemplateContent";
+import { useWorkspaceStore } from "@/store/workspace-store";
 
 function Card({
   title,
@@ -72,6 +74,12 @@ export function SidebarHeader({ hideThemeToggle }: { hideThemeToggle?: boolean }
 }
 
 export function SidebarContent() {
+  const { appMode } = useWorkspaceStore();
+
+  if (appMode === "template") {
+    return <TemplateContent />;
+  }
+
   return (
     <>
       <Card title="Mat Size">
