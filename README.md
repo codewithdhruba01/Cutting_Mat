@@ -33,9 +33,6 @@ This project is built with modern, performant web technologies:
 
 To run this project locally, follow these steps:
 
-### Prerequisites
-Make sure you have Node.js installed (v18 or higher recommended).
-
 ### Installation
 
 1. **Clone the repository:**
@@ -64,24 +61,9 @@ This project enforces strict code quality and formatting standard.
 * **Pre-commit Hooks**: [Husky](https://typicode.github.io/husky/) ensures that all commits automatically run ESLint and Prettier checks before pushing code.
 * **Continuous Integration**: A GitHub Actions workflow automatically builds the project and tests for linting/formatting errors on every `push` and `pull_request` to the `main` branch.
 
-##  Project Structure highlights
-
-* `src/app/`: Next.js App Router pages and root layouts.
-* `src/components/`: Reusable UI components (Sidebar, TopToolbar, PreviewArea).
-* `src/store/`: Centralized state management using Zustand (`workspace-store.ts`).
-* `src/contexts/`: Backward-compatible context hooks for Theme and settings selectors.
-* `src/utils/`: Math and conversion utilities for generating pixel-perfect SVGs.
-* `src/types/`: Centralized TypeScript definitions.
-* `.github/workflows/`: CI/CD pipelines.
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! 
-Feel free to check [issues page](https://github.com/codewithdhruba/Cutting_Mat/issues) if you want to contribute.
-
 ## 📝 License
 
 This project is open-source and available under the [MIT License](LICENSE).
 
----
+
 *Crafted with precision by [@codewithdhruba](https://codewithdhruba.in/)*
