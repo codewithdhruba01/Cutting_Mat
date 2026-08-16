@@ -43,16 +43,16 @@ export function SidebarHeader({ hideThemeToggle }: { hideThemeToggle?: boolean }
 
   return (
     <div className="flex justify-between items-start">
-      <div className="w-full">
-        <AppModeToggle />
-        <h1 className="text-lg font-bold font-mono tracking-tight text-white bg-[#0f3b2e] inline-block px-1 mb-2">
-          Cutting mat bg generator
-        </h1>
-        <p className="text-xs text-muted-foreground font-mono leading-relaxed">
-          Fully customizable SVG cutting mat.
-          <br />
-          Adjust size, grid, ticks, colors, and typography. Use it for backgrounds, and wallpapers.
-        </p>
+      <div className="w-full flex flex-col items-start">
+        <div className="flex items-center gap-3 mb-4">
+          <img src="/favicon.svg" alt="Cutting Mat Logo" className="h-10 w-auto rounded-xl" />
+          <h1 className="text-lg font-bold font-mono tracking-tight text-foreground">
+            Cutting mat
+          </h1>
+        </div>
+        <div className="w-full">
+          <AppModeToggle />
+        </div>
       </div>
       {!hideThemeToggle && (
         <div className="flex items-center gap-3 mt-1 ml-4 shrink-0">
