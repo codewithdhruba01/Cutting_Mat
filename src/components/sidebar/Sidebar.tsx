@@ -44,14 +44,11 @@ export function SidebarHeader({ hideThemeToggle }: { hideThemeToggle?: boolean }
   return (
     <div className="flex justify-between items-start">
       <div className="w-full flex flex-col items-start">
-        <div className="flex items-center gap-3 mb-4">
+        <div className="flex items-center gap-3">
           <img src="/favicon.svg" alt="Cutting Mat Logo" className="h-10 w-auto rounded-xl" />
           <h1 className="text-lg font-bold font-mono tracking-tight text-foreground">
             Cutting mat
           </h1>
-        </div>
-        <div className="w-full">
-          <AppModeToggle />
         </div>
       </div>
       {!hideThemeToggle && (
@@ -76,40 +73,45 @@ export function SidebarHeader({ hideThemeToggle }: { hideThemeToggle?: boolean }
 export function SidebarContent() {
   const { appMode } = useWorkspaceStore();
 
-  if (appMode === "template") {
-    return <TemplateContent />;
-  }
-
   return (
-    <>
-      <Card title="Mat Size">
-        <MatSizeControl />
-      </Card>
+    <div className="flex flex-col w-full">
+      <div className="mb-6 w-full">
+        <AppModeToggle />
+      </div>
+      {appMode === "template" ? (
+        <TemplateContent />
+      ) : (
+        <>
+          <Card title="Mat Size">
+            <MatSizeControl />
+          </Card>
 
-      <Card
-        title="Surface"
-        description="Control the mat's color, choose from a preset or create your own."
-      >
-        <ColorControl />
-      </Card>
+          <Card
+            title="Surface"
+            description="Control the mat's color, choose from a preset or create your own."
+          >
+            <ColorControl />
+          </Card>
 
-      <Card title="Guides" description="Configure alignment and measurement guides.">
-        <div className="space-y-6">
-          <EdgeTicksControl />
-          <NumericGuidesControl />
-          <GridControl />
-          <AdditionalGuidesControl />
-        </div>
-      </Card>
+          <Card title="Guides" description="Configure alignment and measurement guides.">
+            <div className="space-y-6">
+              <EdgeTicksControl />
+              <NumericGuidesControl />
+              <GridControl />
+              <AdditionalGuidesControl />
+            </div>
+          </Card>
 
-      <Card title="Images" description="Import images to place on the cutting mat.">
-        <ImageControl />
-      </Card>
+          <Card title="Images" description="Import images to place on the cutting mat.">
+            <ImageControl />
+          </Card>
 
-      <Card title="Export">
-        <ExportControl />
-      </Card>
-    </>
+          <Card title="Export">
+            <ExportControl />
+          </Card>
+        </>
+      )}
+    </div>
   );
 }
 
