@@ -45,9 +45,7 @@ export function SidebarHeader({ hideThemeToggle }: { hideThemeToggle?: boolean }
     <div className="flex justify-between items-center w-full">
       <div className="flex items-center gap-3">
         <img src="/favicon.svg" alt="Cutting Mat Logo" className="h-10 w-auto rounded-xl" />
-        <h1 className="text-lg font-bold font-mono tracking-tight text-foreground">
-          Cutting mat
-        </h1>
+        <h1 className="text-lg font-bold font-mono tracking-tight text-foreground">Cutting mat</h1>
       </div>
       {!hideThemeToggle && (
         <div className="flex items-center shrink-0">
