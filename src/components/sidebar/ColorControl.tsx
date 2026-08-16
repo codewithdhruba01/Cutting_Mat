@@ -100,37 +100,39 @@ export function ColorControl() {
         </button>
       </div>
 
-      <div className="mt-6 pl-3 border-l-2 border-border flex gap-4">
-        <div className="flex-1 space-y-1">
-          <Label className="text-[10px] uppercase font-mono text-muted-foreground tracking-wider">
-            Surface Color
-          </Label>
-          <div className="relative w-full h-8 rounded-md overflow-hidden border border-border shadow-sm">
-            <input
-              type="color"
-              value={surfaceColors.custom}
-              onChange={(e) => handleCustomColor(e.target.value)}
-              className="absolute -top-4 -left-4 w-[200%] h-[200%] cursor-pointer"
-              suppressHydrationWarning
-            />
+      {surfaceColors.preset === "Custom" && (
+        <div className="mt-6 pl-3 border-l-2 border-border flex gap-4">
+          <div className="flex-1 space-y-1">
+            <Label className="text-[10px] uppercase font-mono text-muted-foreground tracking-wider">
+              Surface Color
+            </Label>
+            <div className="relative w-full h-8 rounded-md overflow-hidden border border-border shadow-sm">
+              <input
+                type="color"
+                value={surfaceColors.custom}
+                onChange={(e) => handleCustomColor(e.target.value)}
+                className="absolute -top-4 -left-4 w-[200%] h-[200%] cursor-pointer"
+                suppressHydrationWarning
+              />
+            </div>
           </div>
-        </div>
 
-        <div className="flex-1 space-y-1">
-          <Label className="text-[10px] uppercase font-mono text-muted-foreground tracking-wider">
-            Guide Color
-          </Label>
-          <div className="relative w-full h-8 rounded-md overflow-hidden border border-border shadow-sm">
-            <input
-              type="color"
-              value={settings.grid.color}
-              onChange={(e) => handleGridColor(e.target.value)}
-              className="absolute -top-4 -left-4 w-[200%] h-[200%] cursor-pointer"
-              suppressHydrationWarning
-            />
+          <div className="flex-1 space-y-1">
+            <Label className="text-[10px] uppercase font-mono text-muted-foreground tracking-wider">
+              Guide Color
+            </Label>
+            <div className="relative w-full h-8 rounded-md overflow-hidden border border-border shadow-sm">
+              <input
+                type="color"
+                value={settings.grid.color}
+                onChange={(e) => handleGridColor(e.target.value)}
+                className="absolute -top-4 -left-4 w-[200%] h-[200%] cursor-pointer"
+                suppressHydrationWarning
+              />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
