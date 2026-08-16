@@ -42,19 +42,17 @@ export function SidebarHeader({ hideThemeToggle }: { hideThemeToggle?: boolean }
   }, []);
 
   return (
-    <div className="flex justify-between items-start">
-      <div className="w-full flex flex-col items-start">
-        <div className="flex items-center gap-3">
-          <img src="/favicon.svg" alt="Cutting Mat Logo" className="h-10 w-auto rounded-xl" />
-          <h1 className="text-lg font-bold font-mono tracking-tight text-foreground">
-            Cutting mat
-          </h1>
-        </div>
+    <div className="flex justify-between items-center w-full">
+      <div className="flex items-center gap-3">
+        <img src="/favicon.svg" alt="Cutting Mat Logo" className="h-10 w-auto rounded-xl" />
+        <h1 className="text-lg font-bold font-mono tracking-tight text-foreground">
+          Cutting mat
+        </h1>
       </div>
       {!hideThemeToggle && (
-        <div className="flex items-center gap-3 mt-1 ml-4 shrink-0">
+        <div className="flex items-center shrink-0">
           <button
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors p-2 -mr-2"
             onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
             title="Toggle Theme"
           >
